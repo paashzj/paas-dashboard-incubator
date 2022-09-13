@@ -23,5 +23,7 @@ DIR="$( cd "$( dirname "$0"  )" && pwd  )"
 bash $DIR/paas-dashboard-portal-react/build.sh
 bash $DIR/paas-dashboard-rust/build.sh
 mkdir -p $DIR/dist-react-rust
+rm -rf $DIR/dist-react-rust/*
 cp -r $DIR/paas-dashboard-portal-react/build $DIR/dist-react-rust/static
 cp $DIR/paas-dashboard-rust/target/release/paas-dashboard-rust $DIR/dist-react-rust/paas-dashboard
+cd $DIR
