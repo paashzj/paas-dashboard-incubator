@@ -16,7 +16,7 @@
 // under the License.
 
 use std::env;
-use actix_web::{App, HttpServer};
+use actix_web::{App, HttpServer, web};
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
@@ -59,4 +59,8 @@ async fn main() -> std::io::Result<()> {
         .bind(("0.0.0.0", 9527))?
         .run()
         .await
+}
+
+fn config(cfg: &mut web::ServiceConfig) {
+    cfg.service(actix_files::Files::new("/portal", "static").show_files_listing());
 }

@@ -1,6 +1,7 @@
 {
   "name": "paas-dashboard-portal-react",
   "version": "0.1.0",
+  "homepage": "portal",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",

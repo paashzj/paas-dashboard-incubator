@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -17,18 +18,7 @@
 # under the License.
 #
 
-[package]
-name = "paas-dashboard-rust"
-version = "0.1.0"
-edition = "2021"
+DIR="$( cd "$( dirname "$0"  )" && pwd  )"
+cd $DIR
 
-[dependencies]
-actix-files = "0.6.2"
-actix-web = "4.2.1"
-chrono = "0.4"
-fern = "0.6.1"
-log = "0.4"
-reqwest = "0.11"
-serde = { version = "1.0.144", features = ["derive"] }
-serde_json = "1.0.85"
-tokio = { version = "1.21.0", features = ["full"] }
+cargo build --release
