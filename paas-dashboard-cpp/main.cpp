@@ -1,4 +1,4 @@
-/*
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,13 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-import Button from "@mui/material/Button";
-
-function ZooKeeperInstances() {
-    return <p>
-        <Button variant="contained">Add ZooKeeper Instance</Button>
-    </p>;
+ 
+int main() {
 }
-
-export default ZooKeeperInstances;
