@@ -110,7 +110,7 @@
                             <classpathPrefix>lib/</classpathPrefix>
                             <useUniqueVersions>false</useUniqueVersions>
                             <mainClass>
-                                com.github.perftool.paas.proxy.Main
+                                com.paas.dashboard.Main
                             </mainClass>
                         </manifest>
                     </archive>
