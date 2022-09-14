@@ -19,12 +19,12 @@
 
 name: rust clippy
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+    paths:
+      - paas-dashboard-rust
+
 jobs:
   clippy_check:
     runs-on: ubuntu-latest

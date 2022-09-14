@@ -62,5 +62,5 @@ async fn main() -> std::io::Result<()> {
 }
 
 fn config(cfg: &mut web::ServiceConfig) {
-    cfg.service(actix_files::Files::new("/portal", "static").show_files_listing());
+    cfg.service(actix_files::Files::new("/static", "static").show_files_listing());
 }
