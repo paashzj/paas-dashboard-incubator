@@ -59,6 +59,6 @@ class ClearBacklogButton extends StatelessWidget {
                 );
               });
         },
-        icon: Icon(Icons.delete));
+        icon: const Icon(Icons.delete));
   }
 }

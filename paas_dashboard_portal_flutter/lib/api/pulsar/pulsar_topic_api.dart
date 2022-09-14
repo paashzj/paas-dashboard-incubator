@@ -111,7 +111,7 @@ class PulsarTopicApi {
       String namespace, String topic, String timestamp) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
-        : HttpUtil.http + '$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/$topic/messageid/$timestamp';
+        : '${HttpUtil.http}$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/$topic/messageid/$timestamp';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
     if (HttpUtil.abnormal(response.statusCode!)) {
       log('ErrorCode is ${response.statusCode}, body is ${response.data}');

@@ -46,7 +46,7 @@ class RedisInstanceViewModel extends BaseLoadViewModel {
   }
 
   String get password {
-    return this.redisInstancePo.password;
+    return redisInstancePo.password;
   }
 
   int get port {

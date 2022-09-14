@@ -17,15 +17,12 @@
 // under the License.
 //
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:paas_dashboard_portal_flutter/generated/l10n.dart';
 import 'package:paas_dashboard_portal_flutter/route/page_route_const.dart';
 import 'package:paas_dashboard_portal_flutter/route/route_gen.dart';
 import 'package:paas_dashboard_portal_flutter/ui/bk/bk_page.dart';
-import 'package:paas_dashboard_portal_flutter/ui/code/code_list_page.dart';
 import 'package:paas_dashboard_portal_flutter/ui/general/author_screen.dart';
 import 'package:paas_dashboard_portal_flutter/ui/general/settings_screen.dart';
 import 'package:paas_dashboard_portal_flutter/ui/home/home_page.dart';
@@ -34,10 +31,7 @@ import 'package:paas_dashboard_portal_flutter/ui/mongo/mongo_page.dart';
 import 'package:paas_dashboard_portal_flutter/ui/mysql/mysql_page.dart';
 import 'package:paas_dashboard_portal_flutter/ui/pulsar/pulsar_page.dart';
 import 'package:paas_dashboard_portal_flutter/ui/redis/redis_page.dart';
-import 'package:paas_dashboard_portal_flutter/ui/sql/sql_list_page.dart';
 import 'package:paas_dashboard_portal_flutter/vm/bk/bk_instance_list_view_model.dart';
-import 'package:paas_dashboard_portal_flutter/vm/code/code_list_view_model.dart';
-import 'package:paas_dashboard_portal_flutter/vm/code/code_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/general/settings_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/kubernetes/k8s_instance_list_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mongo/mongo_database_view_model.dart';
@@ -61,8 +55,6 @@ import 'package:paas_dashboard_portal_flutter/vm/pulsar/pulsar_tenant_view_model
 import 'package:paas_dashboard_portal_flutter/vm/pulsar/pulsar_topic_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/redis/redis_instance_list_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/redis/redis_instance_view_model.dart';
-import 'package:paas_dashboard_portal_flutter/vm/sql/sql_list_view_model.dart';
-import 'package:paas_dashboard_portal_flutter/vm/sql/sql_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -102,10 +94,6 @@ class MyApp extends StatelessWidget {
               create: (context) => BkInstanceListViewModel(),
               child: BkPage(),
             ),
-        PageRouteConst.Code: (context) => ChangeNotifierProvider(
-              create: (context) => CodeListViewModel(),
-              child: CodeListPage(),
-            ),
         PageRouteConst.Kubernetes: (context) => ChangeNotifierProvider(
               create: (context) => K8sInstanceListViewModel(),
               child: K8sPage(),
@@ -130,16 +118,8 @@ class MyApp extends StatelessWidget {
               create: (context) => SettingsViewModel(),
               child: SettingsScreen(),
             ),
-        PageRouteConst.Sql: (context) => ChangeNotifierProvider(
-              create: (context) => SqlListViewModel(),
-              child: SqlListPage(),
-            ),
       },
       onGenerateRoute: (settings) {
-        if (settings.name == PageRouteConst.CodeExecute) {
-          final args = settings.arguments as CodeViewModel;
-          return RouteGen.codeExecute(args);
-        }
         if (settings.name == PageRouteConst.MongoInstance) {
           final args = settings.arguments as MongoInstanceViewModel;
           return RouteGen.mongoInstance(args);
@@ -207,10 +187,6 @@ class MyApp extends StatelessWidget {
         if (settings.name == PageRouteConst.RedisInstance) {
           final args = settings.arguments as RedisInstanceViewModel;
           return RouteGen.redisInstance(args);
-        }
-        if (settings.name == PageRouteConst.SqlExecute) {
-          final args = settings.arguments as SqlViewModel;
-          return RouteGen.sqlExecute(args);
         }
         throw UnimplementedError();
       },

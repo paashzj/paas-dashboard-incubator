@@ -28,23 +28,15 @@ class NavDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Text(
-              'Dashboard',
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
+          const DrawerHeader(
             decoration: BoxDecoration(
                 color: Colors.green,
                 image: DecorationImage(
                     fit: BoxFit.fill, image: AssetImage('assets/images/background/joy_valley_slide.png'))),
-          ),
-          ListTile(
-            title: Text(S.of(context).codeQuery),
-            onTap: () => {Navigator.of(context).pushNamed(PageRouteConst.Code)},
-          ),
-          ListTile(
-            title: Text(S.of(context).sqlQuery),
-            onTap: () => {Navigator.of(context).pushNamed(PageRouteConst.Sql)},
+            child: Text(
+              'Dashboard',
+              style: TextStyle(color: Colors.white, fontSize: 25),
+            ),
           ),
           ListTile(
             title: Text(S.of(context).aboutAuthor),
