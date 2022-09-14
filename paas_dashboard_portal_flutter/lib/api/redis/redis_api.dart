@@ -50,5 +50,4 @@ class RedisApi {
   static Future<dynamic> hDel(String host, int port, String password, String key, String field) async {
     throw UnimplementedError();
   }
-
 }

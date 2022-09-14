@@ -191,5 +191,4 @@ class RouteGen {
               child: RedisInstanceWidget(),
             ));
   }
-
 }

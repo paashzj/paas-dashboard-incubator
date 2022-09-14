@@ -30,7 +30,7 @@ class RedisInstanceViewModel extends BaseLoadViewModel {
   dynamic result = "";
 
   RedisInstanceViewModel deepCopy() {
-    return new RedisInstanceViewModel(redisInstancePo.deepCopy());
+    return RedisInstanceViewModel(redisInstancePo.deepCopy());
   }
 
   int get id {

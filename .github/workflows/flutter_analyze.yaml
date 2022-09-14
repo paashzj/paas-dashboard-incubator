@@ -24,7 +24,7 @@ on:
     branches:
       - main
     paths:
-      - paas_dashboard_portal_flutter
+      - paas_dashboard_portal_flutter/**
 
 jobs:
   build:
