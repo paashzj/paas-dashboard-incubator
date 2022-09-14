@@ -17,13 +17,5 @@
 # under the License.
 #
 
-autofix: false
-
-ignore:
-  - .git/
-  - paas_dashboard_portal_flutter/lib/l10n
-
-rules:
-  end-of-file:
-    enable: true
-    single-new-line: true
+server:
+  port: 9527
