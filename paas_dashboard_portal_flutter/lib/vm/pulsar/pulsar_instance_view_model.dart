@@ -37,71 +37,71 @@ class PulsarInstanceViewModel extends BaseLoadListPageViewModel<PulsarTenantView
   PulsarInstanceViewModel(this.pulsarInstancePo);
 
   PulsarInstanceViewModel deepCopy() {
-    return new PulsarInstanceViewModel(pulsarInstancePo.deepCopy());
+    return PulsarInstanceViewModel(pulsarInstancePo.deepCopy());
   }
 
   int get id {
-    return this.pulsarInstancePo.id;
+    return pulsarInstancePo.id;
   }
 
   String get name {
-    return this.pulsarInstancePo.name;
+    return pulsarInstancePo.name;
   }
 
   String get host {
-    return this.pulsarInstancePo.host;
+    return pulsarInstancePo.host;
   }
 
   int get port {
-    return this.pulsarInstancePo.port;
+    return pulsarInstancePo.port;
   }
 
   String get functionHost {
-    return this.pulsarInstancePo.functionHost;
+    return pulsarInstancePo.functionHost;
   }
 
   int get functionPort {
-    return this.pulsarInstancePo.functionPort;
+    return pulsarInstancePo.functionPort;
   }
 
   bool get enableTls {
-    return this.pulsarInstancePo.enableTls;
+    return pulsarInstancePo.enableTls;
   }
 
   bool get functionEnableTls {
-    return this.pulsarInstancePo.functionEnableTls;
+    return pulsarInstancePo.functionEnableTls;
   }
 
   String get caFile {
-    return this.pulsarInstancePo.caFile;
+    return pulsarInstancePo.caFile;
   }
 
   String get clientCertFile {
-    return this.pulsarInstancePo.clientCertFile;
+    return pulsarInstancePo.clientCertFile;
   }
 
   String get clientKeyFile {
-    return this.pulsarInstancePo.clientKeyFile;
+    return pulsarInstancePo.clientKeyFile;
   }
 
   String get clientKeyPassword {
-    return this.pulsarInstancePo.clientKeyPassword;
+    return pulsarInstancePo.clientKeyPassword;
   }
 
   PulsarFormDto toPulsarFormDto() {
     PulsarFormDto formDto = new PulsarFormDto();
-    formDto.id = this.pulsarInstancePo.id;
-    formDto.name = this.pulsarInstancePo.name;
-    formDto.host = this.pulsarInstancePo.host;
-    formDto.port = this.pulsarInstancePo.port;
-    formDto.functionHost = this.pulsarInstancePo.functionHost;
-    formDto.functionPort = this.pulsarInstancePo.functionPort;
-    formDto.enableTls = this.pulsarInstancePo.enableTls;
-    formDto.functionEnableTls = this.pulsarInstancePo.functionEnableTls;
-    formDto.caFile = this.pulsarInstancePo.caFile;
-    formDto.clientCertFile = this.pulsarInstancePo.clientCertFile;
-    formDto.clientKeyFile = this.pulsarInstancePo.clientKeyFile;
-    formDto.clientKeyPassword = this.pulsarInstancePo.clientKeyPassword;
+    formDto.id = pulsarInstancePo.id;
+    formDto.name = pulsarInstancePo.name;
+    formDto.host = pulsarInstancePo.host;
+    formDto.port = pulsarInstancePo.port;
+    formDto.functionHost = pulsarInstancePo.functionHost;
+    formDto.functionPort = pulsarInstancePo.functionPort;
+    formDto.enableTls = pulsarInstancePo.enableTls;
+    formDto.functionEnableTls = pulsarInstancePo.functionEnableTls;
+    formDto.caFile = pulsarInstancePo.caFile;
+    formDto.clientCertFile = pulsarInstancePo.clientCertFile;
+    formDto.clientKeyFile = pulsarInstancePo.clientKeyFile;
+    formDto.clientKeyPassword = pulsarInstancePo.clientKeyPassword;
     return formDto;
   }
 

@@ -34,15 +34,15 @@ class RedisInstanceViewModel extends BaseLoadViewModel {
   }
 
   int get id {
-    return this.redisInstancePo.id;
+    return redisInstancePo.id;
   }
 
   String get name {
-    return this.redisInstancePo.name;
+    return redisInstancePo.name;
   }
 
   String get ip {
-    return this.redisInstancePo.ip;
+    return redisInstancePo.ip;
   }
 
   String get password {
@@ -50,11 +50,11 @@ class RedisInstanceViewModel extends BaseLoadViewModel {
   }
 
   int get port {
-    return this.redisInstancePo.port;
+    return redisInstancePo.port;
   }
 
   String get executeResult {
-    return this.result.toString();
+    return result.toString();
   }
 
   Future<void> execute(OP op, List<String> value) async {
