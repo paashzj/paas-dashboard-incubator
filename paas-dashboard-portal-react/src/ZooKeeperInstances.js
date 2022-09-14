@@ -17,12 +17,15 @@
  * under the License.
  */
 
-import Button from "@mui/material/Button";
+import React from 'react';
+import Button from '@mui/material/Button';
 
 function ZooKeeperInstances() {
-    return <p>
-        <Button variant="contained">Add ZooKeeper Instance</Button>
-    </p>;
+  return (
+    <p>
+      <Button variant="contained">Add ZooKeeper Instance</Button>
+    </p>
+  );
 }
 
 export default ZooKeeperInstances;

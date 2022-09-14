@@ -17,18 +17,19 @@
 # under the License.
 #
 
-name: rust clippy
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-jobs:
-  clippy_check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: rustup component add clippy
-      - run: cd paas-dashboard-rust && cargo clippy --all-features
+env:
+  browser: true
+  es2021: true
+extends:
+  - plugin:react/recommended
+  - plugin:prettier/recommended
+  - airbnb
+overrides: []
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+plugins:
+  - react
+rules: {
+  "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+}
