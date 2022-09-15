@@ -21,4 +21,4 @@
 DIR="$( cd "$( dirname "$0"  )" && pwd  )"
 cd $DIR
 
-mvn clean package -Dmaven.test.skip=true
+mvn -B clean package -Dmaven.test.skip=true

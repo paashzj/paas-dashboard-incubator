@@ -26,18 +26,18 @@ class SearchableTitle extends StatelessWidget {
 
   final TextEditingController searchController;
 
-  SearchableTitle(this.title, this.searchHint, this.searchController);
+  const SearchableTitle(this.title, this.searchHint, this.searchController);
 
   @override
   Widget build(BuildContext context) {
-    var searchBox = Container(
+    var searchBox = SizedBox(
       width: 300,
       child: TextFormField(
         controller: searchController,
         decoration: InputDecoration(hintText: searchHint),
       ),
     );
-    return Container(
+    return SizedBox(
       height: 40,
       child: ListView(
         scrollDirection: Axis.horizontal,
@@ -46,7 +46,7 @@ class SearchableTitle extends StatelessWidget {
           Container(
             child: Text(
               title,
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
             ),
           ),
           searchBox

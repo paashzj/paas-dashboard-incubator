@@ -61,7 +61,7 @@ class PulsarNamespacePoliciesViewModel extends BaseLoadViewModel {
       maxUnackedMessagesPerConsumer = resp.maxUnackedMessagesPerConsumer;
       maxUnackedMessagesPerSubscription = resp.maxUnackedMessagesPerSubscription;
       maxSubscriptionsPerTopic = resp.maxSubscriptionsPerTopic;
-      this.maxTopicsPerNamespace = resp.maxTopicsPerNamespace;
+      maxTopicsPerNamespace = resp.maxTopicsPerNamespace;
       loadSuccess();
     } on Exception catch (e) {
       loadException = e;

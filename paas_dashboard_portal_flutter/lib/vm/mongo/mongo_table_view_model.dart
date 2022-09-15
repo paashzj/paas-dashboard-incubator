@@ -18,9 +18,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/api/mongo/mongo_tables_api.dart';
 import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_database.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_sql_result.dart';
 import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_table.dart';
 import 'package:paas_dashboard_portal_flutter/persistent/po/mongo_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/ui/component/dynamic_filter_table.dart';
@@ -35,7 +33,7 @@ class MongoTableViewModel extends BaseLoadListPageViewModel<List> implements Fil
   MongoTableViewModel(this.mongoInstancePo, this.databaseResp, this.tableResp);
 
   MongoTableViewModel deepCopy() {
-    return new MongoTableViewModel(mongoInstancePo.deepCopy(), databaseResp.deepCopy(), tableResp.deepCopy());
+    return MongoTableViewModel(mongoInstancePo.deepCopy(), databaseResp.deepCopy(), tableResp.deepCopy());
   }
 
   String get name {
@@ -51,11 +49,11 @@ class MongoTableViewModel extends BaseLoadListPageViewModel<List> implements Fil
   }
 
   List<String> getColumns() {
-    return this.columns == null ? [''] : this.columns!;
+    return columns == null ? [''] : columns!;
   }
 
   List<List> getData() {
-    return this.displayList;
+    return displayList;
   }
 
   Future<void> fetchData(List<DropDownButtonData>? filters) async {
@@ -64,10 +62,10 @@ class MongoTableViewModel extends BaseLoadListPageViewModel<List> implements Fil
 
   DataRow getConvert(dynamic obj) {
     List<Object?> v = obj;
-    return new DataRow(
+    return DataRow(
         cells: v
             .map((e) => DataCell(e == null
-                ? SelectableText("(N/A)", style: new TextStyle(color: Colors.grey))
+                ? const SelectableText("(N/A)", style: TextStyle(color: Colors.grey))
                 : SelectableText(e.toString())))
             .toList());
   }

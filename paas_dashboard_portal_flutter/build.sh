@@ -21,4 +21,6 @@
 DIR="$( cd "$( dirname "$0"  )" && pwd  )"
 cd $DIR
 
+flutter pub get
+flutter pub run intl_utils:generate
 flutter build web

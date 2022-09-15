@@ -27,17 +27,17 @@ import 'package:provider/provider.dart';
 
 /// Mongo table data list windows
 class MongoTableDataWidget extends StatefulWidget {
-  MongoTableDataWidget();
+  const MongoTableDataWidget();
 
   @override
   State<StatefulWidget> createState() {
-    return new _MongoTableDataState();
+    return _MongoTableDataState();
   }
 }
 
 class _MongoTableDataState extends State<MongoTableDataWidget> {
   DynamicFilterTable? filterTable;
-  ColumnNotifier _notifier = new ColumnNotifier();
+  final ColumnNotifier _notifier = ColumnNotifier();
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _MongoTableDataState extends State<MongoTableDataWidget> {
             .map((e) => DataColumn(
                     label: SelectableText(
                   e,
-                  style: new TextStyle(color: Colors.red, fontSize: 20),
+                  style: const TextStyle(color: Colors.red, fontSize: 20),
                 )))
             .toList(),
         source: vm,
@@ -88,14 +88,14 @@ class _MongoTableDataState extends State<MongoTableDataWidget> {
           showDialog(
             context: context,
             builder: (BuildContext context) {
-              return new AlertDialog(
+              return AlertDialog(
                   title: Text(
                     rs ? S.of(context).success : S.of(context).failure + error,
                     textAlign: TextAlign.center,
                   ),
                   actions: [
-                    new TextButton(
-                      child: new Text(S.of(context).confirm),
+                    TextButton(
+                      child: Text(S.of(context).confirm),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -114,7 +114,7 @@ class _MongoTableDataState extends State<MongoTableDataWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: [
-              new Row(
+              Row(
                 children: [refreshButton, exportButton],
               ),
               filterTable!

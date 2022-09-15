@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: PageRouteConst.Root,
       routes: {
-        PageRouteConst.Root: (context) => HomePage(),
+        PageRouteConst.Root: (context) => const HomePage(),
         PageRouteConst.Author: (context) => AuthorScreen(),
         PageRouteConst.Bookkeeper: (context) => ChangeNotifierProvider(
               create: (context) => BkInstanceListViewModel(),
@@ -116,7 +116,7 @@ class MyApp extends StatelessWidget {
             ),
         PageRouteConst.Settings: (context) => ChangeNotifierProvider(
               create: (context) => SettingsViewModel(),
-              child: SettingsScreen(),
+              child: const SettingsScreen(),
             ),
       },
       onGenerateRoute: (settings) {

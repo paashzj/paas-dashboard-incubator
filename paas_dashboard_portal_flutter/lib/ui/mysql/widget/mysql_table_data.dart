@@ -32,17 +32,17 @@ import 'mysql_table_column.dart';
 
 /// MySQL table data list windows
 class MysqlTableDataWidget extends StatefulWidget {
-  MysqlTableDataWidget();
+  const MysqlTableDataWidget();
 
   @override
   State<StatefulWidget> createState() {
-    return new _MysqlTableDataState();
+    return _MysqlTableDataState();
   }
 }
 
 class _MysqlTableDataState extends State<MysqlTableDataWidget> {
   DynamicFilterTable? filterTable;
-  ColumnNotifier _notifier = new ColumnNotifier();
+  final ColumnNotifier _notifier = ColumnNotifier();
 
   @override
   void initState() {
@@ -70,7 +70,7 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
             .map((e) => DataColumn(
                     label: SelectableText(
                   e,
-                  style: new TextStyle(color: Colors.red, fontSize: 20),
+                  style: const TextStyle(color: Colors.red, fontSize: 20),
                 )))
             .toList(),
         source: vm,
@@ -93,14 +93,14 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
           showDialog(
             context: context,
             builder: (BuildContext context) {
-              return new AlertDialog(
+              return AlertDialog(
                   title: Text(
                     rs ? S.of(context).success : S.of(context).failure + error,
                     textAlign: TextAlign.center,
                   ),
                   actions: [
-                    new TextButton(
-                      child: new Text(S.of(context).confirm),
+                    TextButton(
+                      child: Text(S.of(context).confirm),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -111,8 +111,8 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
         },
         child: Text(S.of(context).export));
     MysqlTableColumnViewModel tableColumnVm =
-        new MysqlTableColumnViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
-    MysqlTableIndexViewModel indexColumnVm = new MysqlTableIndexViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
+        MysqlTableColumnViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
+    MysqlTableIndexViewModel indexColumnVm = MysqlTableIndexViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
     _notifier.setColumns(vm.getColumns());
     var body = ListView(
       children: <Widget>[
@@ -121,7 +121,7 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: [
-              new Row(children: [refreshButton, exportButton]),
+              Row(children: [refreshButton, exportButton]),
               filterTable!
             ],
           ),
@@ -148,11 +148,11 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
               body,
               ChangeNotifierProvider(
                 create: (context) => tableColumnVm.deepCopy(),
-                child: MysqlTableColumnWidget(),
+                child: const MysqlTableColumnWidget(),
               ).build(context),
               ChangeNotifierProvider(
                 create: (context) => indexColumnVm.deepCopy(),
-                child: MysqlTableIndexWidget(),
+                child: const MysqlTableIndexWidget(),
               ).build(context)
             ],
           ),

@@ -52,7 +52,7 @@ class Persistent {
   static PersistentApi? api;
 
   static Future<PersistentApi> getApi() async {
-    return new PersistentMemory();
+    return PersistentMemory();
   }
 
   static Future<void> savePulsar(

@@ -59,7 +59,7 @@ class PulsarNamespaceApi {
       throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');
     }
     List jsonResponse = json.decode(response.data!) as List;
-    return jsonResponse.map((name) => new NamespaceResp.fromJson(name)).toList();
+    return jsonResponse.map((name) => NamespaceResp.fromJson(name)).toList();
   }
 
   static Future<BacklogQuotaResp> getBacklogQuota(
@@ -74,7 +74,7 @@ class PulsarNamespaceApi {
     Map jsonResponse = json.decode(response.data!) as Map;
     var destinationStorageResp = jsonResponse["destination_storage"];
     if (destinationStorageResp == null) {
-      return new BacklogQuotaResp(null, null, null);
+      return BacklogQuotaResp(null, null, null);
     }
     return BacklogQuotaResp.fromJson(destinationStorageResp);
   }
@@ -83,7 +83,7 @@ class PulsarNamespaceApi {
       String namespace, int limit, int? limitTime, String policy) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/backlogQuota';
-    BacklogQuotaReq backlogQuotaReq = new BacklogQuotaReq(limit, limitTime, policy);
+    BacklogQuotaReq backlogQuotaReq = BacklogQuotaReq(limit, limitTime, policy);
     var response =
         await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).post(url, data: json.encode(backlogQuotaReq));
     if (HttpUtil.abnormal(response.statusCode!)) {
@@ -110,7 +110,7 @@ class PulsarNamespaceApi {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/autoTopicCreation';
     TopicAutoCreateReq topicAutoCreateReq =
-        new TopicAutoCreateReq(allowAutoTopicCreation, topicType, defaultNumPartitions);
+        TopicAutoCreateReq(allowAutoTopicCreation, topicType, defaultNumPartitions);
     var response =
         await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).post(url, data: json.encode(topicAutoCreateReq));
     if (HttpUtil.abnormal(response.statusCode!)) {

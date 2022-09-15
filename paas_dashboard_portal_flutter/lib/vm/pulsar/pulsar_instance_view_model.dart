@@ -89,7 +89,7 @@ class PulsarInstanceViewModel extends BaseLoadListPageViewModel<PulsarTenantView
   }
 
   PulsarFormDto toPulsarFormDto() {
-    PulsarFormDto formDto = new PulsarFormDto();
+    PulsarFormDto formDto = PulsarFormDto();
     formDto.id = pulsarInstancePo.id;
     formDto.name = pulsarInstancePo.name;
     formDto.host = pulsarInstancePo.host;
@@ -108,9 +108,9 @@ class PulsarInstanceViewModel extends BaseLoadListPageViewModel<PulsarTenantView
   Future<void> fetchTenants() async {
     try {
       final results = await PulsarTenantApi.getTenants(id, host, port, pulsarInstancePo.createTlsContext());
-      this.fullList = results.map((e) => PulsarTenantViewModel(pulsarInstancePo, e)).toList();
-      this.displayList = this.fullList;
-      this.progress = 0;
+      fullList = results.map((e) => PulsarTenantViewModel(pulsarInstancePo, e)).toList();
+      displayList = fullList;
+      progress = 0;
       loadSuccess();
     } on Exception catch (e) {
       log('request failed, $e');
@@ -122,12 +122,12 @@ class PulsarInstanceViewModel extends BaseLoadListPageViewModel<PulsarTenantView
 
   Future<void> filter(String str) async {
     if (str == "") {
-      this.displayList = this.fullList;
+      displayList = fullList;
       notifyListeners();
       return;
     }
     if (!loading && loadException == null) {
-      this.displayList = this.fullList.where((element) => element.tenant.contains(str)).toList();
+      displayList = fullList.where((element) => element.tenant.contains(str)).toList();
     }
     notifyListeners();
   }
@@ -165,7 +165,7 @@ class PulsarInstanceViewModel extends BaseLoadListPageViewModel<PulsarTenantView
           String namespace = namespaceResps[j].namespace;
           final topics = await PulsarPartitionedTopicApi.getTopics(
               id, host, port, pulsarInstancePo.createTlsContext(), tenant, namespace);
-          topicList.addAll(topics.map((e) => new Triple(tenant, namespace, e.topicName)).toList());
+          topicList.addAll(topics.map((e) => Triple(tenant, namespace, e.topicName)).toList());
         }
         progress = 0.2 * (i / fullList.length);
       }
