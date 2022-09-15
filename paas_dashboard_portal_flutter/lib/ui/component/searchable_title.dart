@@ -43,11 +43,9 @@ class SearchableTitle extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         children: [
-          Container(
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 30),
-            ),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 30),
           ),
           searchBox
         ],

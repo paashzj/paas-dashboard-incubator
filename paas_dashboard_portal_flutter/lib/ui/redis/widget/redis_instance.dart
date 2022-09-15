@@ -131,12 +131,10 @@ class _RedisInstanceWidgetState extends State<RedisInstanceWidget> {
     var body = ListView(
       shrinkWrap: true,
       children: <Widget>[
-        Container(
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: [row1, row2],
-          ),
+        ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          children: [row1, row2],
         ),
       ],
     );

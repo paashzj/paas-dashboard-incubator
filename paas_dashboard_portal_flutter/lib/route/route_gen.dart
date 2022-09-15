@@ -34,7 +34,7 @@ import 'package:paas_dashboard_portal_flutter/ui/pulsar/screen/pulsar_sink.dart'
 import 'package:paas_dashboard_portal_flutter/ui/pulsar/screen/pulsar_source.dart';
 import 'package:paas_dashboard_portal_flutter/ui/pulsar/screen/pulsar_tenant.dart';
 import 'package:paas_dashboard_portal_flutter/ui/pulsar/screen/pulsar_topic.dart';
-import 'package:paas_dashboard_portal_flutter/ui/redis/widget/redis_instance_dart.dart';
+import 'package:paas_dashboard_portal_flutter/ui/redis/widget/redis_instance.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mongo/mongo_database_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mongo/mongo_instance_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mongo/mongo_table_view_model.dart';

@@ -19,7 +19,7 @@
 
 import 'package:paas_dashboard_portal_flutter/api/redis/redis_api.dart';
 import 'package:paas_dashboard_portal_flutter/persistent/po/redis_instance_po.dart';
-import 'package:paas_dashboard_portal_flutter/ui/redis/widget/redis_instance_dart.dart';
+import 'package:paas_dashboard_portal_flutter/ui/redis/widget/redis_instance.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_view_model.dart';
 
 class RedisInstanceViewModel extends BaseLoadViewModel {

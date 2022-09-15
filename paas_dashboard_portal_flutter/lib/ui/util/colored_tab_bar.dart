@@ -20,7 +20,7 @@
 import 'package:flutter/material.dart';
 
 class ColoredTabBar extends Container implements PreferredSizeWidget {
-  ColoredTabBar(this.color, this.tabBar);
+  ColoredTabBar(this.color, this.tabBar, {Key? key}) : super(key: key);
 
   @override
   final Color color;

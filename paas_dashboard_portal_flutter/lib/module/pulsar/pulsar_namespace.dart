@@ -124,17 +124,17 @@ class PolicyResp {
 
   factory PolicyResp.fromJson(Map map) {
     var autoTopicCreate = map["autoTopicCreationOverride"];
-    var isAllowAutoTopicCreation;
-    var topicType;
-    var defaultNumPartitions;
+    bool? isAllowAutoTopicCreation;
+    String? topicType;
+    int? defaultNumPartitions;
     if (autoTopicCreate != null) {
       isAllowAutoTopicCreation = autoTopicCreate["allowAutoTopicCreation"];
       topicType = autoTopicCreate["topicType"];
       defaultNumPartitions = autoTopicCreate["defaultNumPartitions"];
     }
     var bundleData = map["bundles"];
-    var boundaries;
-    var numBundles;
+    List<String>? boundaries;
+    var numBundles = 0;
     if (bundleData != null) {
       boundaries = bundleData["boundaries"];
       numBundles = bundleData["numBundles"];

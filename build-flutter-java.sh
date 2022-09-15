@@ -28,5 +28,5 @@ cp -r $DIR/paas_dashboard_portal_flutter/build/web $DIR/dist-flutter-java/static
 cp $DIR/paas-dashboard-java/target/paas-dashboard-java-0.0.1-SNAPSHOT.jar $DIR/dist-flutter-java/paas-dashboard.jar
 cp -r $DIR/paas-dashboard-java/target/lib $DIR/dist-flutter-java/lib
 cp -r $DIR/paas-dashboard-java/target/conf $DIR/dist-flutter-java/conf
-cp -r $DIR/docker-build-flutter-java/ $DIR/dist-flutter-java/
+cp -r $DIR/docker-build-flutter-java/* $DIR/dist-flutter-java/
 cd $DIR

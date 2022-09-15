@@ -96,9 +96,7 @@ class PulsarNamespaceBacklogQuotaWidgetState extends State<PulsarNamespaceBacklo
             controller: limitSizeEditingController,
           ),
         ),
-        Container(
-          child: Text("${S.of(context).unit}: ${S.of(context).byte}"),
-        ),
+        Text("${S.of(context).unit}: ${S.of(context).byte}"),
         SizedBox(
           height: 50,
           child: TextFormField(
@@ -106,9 +104,7 @@ class PulsarNamespaceBacklogQuotaWidgetState extends State<PulsarNamespaceBacklo
             controller: limitTimeEditingController,
           ),
         ),
-        Container(
-          child: Text("${S.of(context).unit}: ${S.of(context).second}"),
-        ),
+        Text("${S.of(context).unit}: ${S.of(context).second}"),
         SizedBox(
           height: 50,
           child: TextFormField(
@@ -116,11 +112,9 @@ class PulsarNamespaceBacklogQuotaWidgetState extends State<PulsarNamespaceBacklo
             controller: policyEditingController,
           ),
         ),
-        Container(
-          child: const SelectableText(
-            "Policy enum: {producer_request_hold, producer_exception, consumer_backlog_eviction}",
-            toolbarOptions: ToolbarOptions(paste: true),
-          ),
+        const SelectableText(
+          "Policy enum: {producer_request_hold, producer_exception, consumer_backlog_eviction}",
+          toolbarOptions: ToolbarOptions(paste: true),
         ),
       ],
     );

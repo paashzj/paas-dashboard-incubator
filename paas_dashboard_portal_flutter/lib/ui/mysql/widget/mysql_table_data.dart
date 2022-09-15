@@ -115,15 +115,13 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
     _notifier.setColumns(vm.getColumns());
     var body = ListView(
       children: <Widget>[
-        Container(
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: [
-              Row(children: [refreshButton, exportButton]),
-              filterTable!
-            ],
-          ),
+        ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          children: [
+            Row(children: [refreshButton, exportButton]),
+            filterTable!
+          ],
         ),
         dbsFuture
       ],
