@@ -146,7 +146,8 @@ class PulsarNamespaceApi {
       String namespace, int? maxConsumersPerTopic) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxConsumersPerTopic';
-    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).post(url, data: maxConsumersPerTopic.toString());
+    var response =
+        await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).post(url, data: maxConsumersPerTopic.toString());
     if (HttpUtil.abnormal(response.statusCode!)) {
       log('ErrorCode is ${response.statusCode}, body is ${response.data}');
       throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');
@@ -168,7 +169,8 @@ class PulsarNamespaceApi {
   static Future<void> setMaxUnackedMessagesPerConsumer(int id, String host, int port, TlsContext tlsContext,
       String tenant, String namespace, int? maxUnackedMessagesPerConsumer) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
-    String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxUnackedMessagesPerConsumer';
+    String url =
+        '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxUnackedMessagesPerConsumer';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id)
         .post(url, data: maxUnackedMessagesPerConsumer.toString());
     if (HttpUtil.abnormal(response.statusCode!)) {
@@ -180,7 +182,8 @@ class PulsarNamespaceApi {
   static Future<void> setMaxUnackedMessagesPerSubscription(int id, String host, int port, TlsContext tlsContext,
       String tenant, String namespace, int? maxUnackedMessagesPerSubscription) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
-    String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxUnackedMessagesPerSubscription';
+    String url =
+        '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxUnackedMessagesPerSubscription';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id)
         .post(url, data: maxUnackedMessagesPerSubscription.toString());
     if (HttpUtil.abnormal(response.statusCode!)) {
@@ -205,8 +208,8 @@ class PulsarNamespaceApi {
       String namespace, int? maxTopicsPerNamespace) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxTopicsPerNamespace';
-    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).post(url,
-        data: maxTopicsPerNamespace.toString(), options: Options(contentType: ContentType.json.toString()));
+    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id)
+        .post(url, data: maxTopicsPerNamespace.toString(), options: Options(contentType: ContentType.json.toString()));
     if (HttpUtil.abnormal(response.statusCode!)) {
       log('ErrorCode is ${response.statusCode}, body is ${response.data}');
       throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');

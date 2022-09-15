@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -17,25 +18,12 @@
 # under the License.
 #
 
-name: Flutter Format
+cd "$(dirname "$0")"
+cd ..
 
-on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - paas_dashboard_portal_flutter/**
+PAAS_DASHBOARD_HOME=`pwd`
+export STATIC_PATH=$PAAS_DASHBOARD_HOME/static/
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: paas_dashboard_portal_flutter
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - run: flutter pub get
-      - run: flutter format --set-exit-if-changed -l 120 .
+echo "Starting, PAAS_DASHBOARD_HOME is $PAAS_DASHBOARD_HOME"
+java -classpath $PAAS_DASHBOARD_HOME/lib/*:$PAAS_DASHBOARD_HOME/paas-dashboard.jar:$PAAS_DASHBOARD_HOME/conf/*  com.paas.dashboard.Main
+tail -f /dev/null

@@ -29,12 +29,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: paas_dashboard_portal_flutter
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: cd paas_dashboard_portal_flutter
       - run: flutter pub get
       - run: flutter pub run intl_utils:generate
       - run: flutter analyze .

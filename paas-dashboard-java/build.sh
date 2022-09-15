@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -17,25 +18,7 @@
 # under the License.
 #
 
-name: Flutter Format
+DIR="$( cd "$( dirname "$0"  )" && pwd  )"
+cd $DIR
 
-on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - paas_dashboard_portal_flutter/**
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: paas_dashboard_portal_flutter
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - run: flutter pub get
-      - run: flutter format --set-exit-if-changed -l 120 .
+mvn clean package -Dmaven.test.skip=true

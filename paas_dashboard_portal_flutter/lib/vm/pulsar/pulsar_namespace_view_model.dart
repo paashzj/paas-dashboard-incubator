@@ -63,7 +63,8 @@ class PulsarNamespaceViewModel extends BaseLoadListPageViewModel<PulsarPartition
     try {
       final results = await PulsarPartitionedTopicApi.getTopics(
           id, host, port, pulsarInstancePo.createTlsContext(), tenant, namespace);
-      fullList = results.map((e) => PulsarPartitionedTopicViewModel(pulsarInstancePo, tenantResp, namespaceResp, e)).toList();
+      fullList =
+          results.map((e) => PulsarPartitionedTopicViewModel(pulsarInstancePo, tenantResp, namespaceResp, e)).toList();
       displayList = fullList;
       loadSuccess();
     } on Exception catch (e) {
