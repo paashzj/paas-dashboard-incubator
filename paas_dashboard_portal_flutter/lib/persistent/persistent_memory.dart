@@ -277,9 +277,7 @@ class PersistentMemory implements PersistentApi {
 
   @override
   Future<List<RedisInstancePo>> redisInstances() async {
-    return [
-      RedisInstancePo(0, "example", RedisConst.defaultIp, RedisConst.defaultPort, RedisConst.defaultPassword)
-    ];
+    return [RedisInstancePo(0, "example", RedisConst.defaultIp, RedisConst.defaultPort, RedisConst.defaultPassword)];
   }
 
   @override

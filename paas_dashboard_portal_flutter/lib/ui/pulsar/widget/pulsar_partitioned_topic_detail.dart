@@ -67,8 +67,8 @@ class PulsarPartitionedTopicDetailWidgetState extends State<PulsarPartitionedTop
                         var split = itemRow.topicName.split("/");
                         var topicResp = TopicResp(split[split.length - 1]);
                         Navigator.pushNamed(context, PageRouteConst.PulsarTopic,
-                            arguments: PulsarTopicViewModel(
-                                vm.pulsarInstancePo, vm.tenantResp, vm.namespaceResp, topicResp));
+                            arguments:
+                                PulsarTopicViewModel(vm.pulsarInstancePo, vm.tenantResp, vm.namespaceResp, topicResp));
                       },
                       cells: [
                         DataCell(

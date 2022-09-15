@@ -110,8 +110,7 @@ class _MysqlTableDataState extends State<MysqlTableDataWidget> {
           );
         },
         child: Text(S.of(context).export));
-    MysqlTableColumnViewModel tableColumnVm =
-        MysqlTableColumnViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
+    MysqlTableColumnViewModel tableColumnVm = MysqlTableColumnViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
     MysqlTableIndexViewModel indexColumnVm = MysqlTableIndexViewModel(vm.mysqlInstancePo, vm.dbname, vm.tableName);
     _notifier.setColumns(vm.getColumns());
     var body = ListView(

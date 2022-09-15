@@ -124,7 +124,8 @@ class RouteGen {
 
   static Route mysqlTableIndex(MysqlTableIndexViewModel viewModel) {
     return MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(create: (context) => viewModel, child: const MysqlTableIndexWidget()));
+        builder: (context) =>
+            ChangeNotifierProvider(create: (context) => viewModel, child: const MysqlTableIndexWidget()));
   }
 
   static Route pulsarInstance(PulsarInstanceViewModel viewModel) {

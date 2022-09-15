@@ -109,8 +109,7 @@ class PulsarNamespaceApi {
       String namespace, bool? allowAutoTopicCreation, String? topicType, int? defaultNumPartitions) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/autoTopicCreation';
-    TopicAutoCreateReq topicAutoCreateReq =
-        TopicAutoCreateReq(allowAutoTopicCreation, topicType, defaultNumPartitions);
+    TopicAutoCreateReq topicAutoCreateReq = TopicAutoCreateReq(allowAutoTopicCreation, topicType, defaultNumPartitions);
     var response =
         await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).post(url, data: json.encode(topicAutoCreateReq));
     if (HttpUtil.abnormal(response.statusCode!)) {

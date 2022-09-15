@@ -46,8 +46,7 @@ class PulsarInstancePo {
   }
 
   TlsContext createFunctionTlsContext() {
-    return TlsContext(
-        functionEnableTls, caFile, clientCertFile, clientKeyFile, clientKeyPassword);
+    return TlsContext(functionEnableTls, caFile, clientCertFile, clientKeyFile, clientKeyPassword);
   }
 
   Map<String, dynamic> toMap() {

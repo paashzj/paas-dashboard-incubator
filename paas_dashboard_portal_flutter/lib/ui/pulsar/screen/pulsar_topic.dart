@@ -74,8 +74,8 @@ class _PulsarTopicState extends State<PulsarTopic> {
               child: const PulsarTopicBasicWidget(),
             ).build(context),
             ChangeNotifierProvider(
-              create: (context) => PulsarTopicSubscriptionViewModel(
-                  vm.pulsarInstancePo, vm.tenantResp, vm.namespaceResp, vm.topicResp),
+              create: (context) =>
+                  PulsarTopicSubscriptionViewModel(vm.pulsarInstancePo, vm.tenantResp, vm.namespaceResp, vm.topicResp),
               child: const PulsarTopicSubscriptionWidget(),
             ).build(context),
             ChangeNotifierProvider(

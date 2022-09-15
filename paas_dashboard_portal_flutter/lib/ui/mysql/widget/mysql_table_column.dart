@@ -81,8 +81,7 @@ class _MysqlTableColumnWidgetState extends State<MysqlTableColumnWidget> {
       ],
     );
 
-    MysqlTableIndexViewModel indexVm =
-        MysqlTableIndexViewModel(vm.mysqlInstancePo.deepCopy(), vm.dbname, vm.tableName);
+    MysqlTableIndexViewModel indexVm = MysqlTableIndexViewModel(vm.mysqlInstancePo.deepCopy(), vm.dbname, vm.tableName);
 
     return DefaultTabController(
       length: 2,

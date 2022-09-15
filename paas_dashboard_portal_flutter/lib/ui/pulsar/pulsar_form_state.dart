@@ -207,8 +207,7 @@ class __PulsarFormState extends State<PulsarForm> {
               child: clientKeyRow,
             );
 
-            TextEditingController clientKeyPasswordController =
-                TextEditingController(text: formDto!.clientKeyPassword);
+            TextEditingController clientKeyPasswordController = TextEditingController(text: formDto!.clientKeyPassword);
             TextFormField clientKeyPasswordField = TextFormField(
               decoration: const InputDecoration(labelText: "Client Key Password"),
               controller: clientKeyPasswordController,
