@@ -17,17 +17,17 @@
 // under the License.
 //
 
-class RedisInstancePo {
+class RedisInstanceDto {
   final int id;
   final String name;
   final String ip;
   final int port;
   final String password;
 
-  RedisInstancePo(this.id, this.name, this.ip, this.port, this.password);
+  RedisInstanceDto(this.id, this.name, this.ip, this.port, this.password);
 
-  RedisInstancePo deepCopy() {
-    return RedisInstancePo(id, name, ip, port, password);
+  RedisInstanceDto deepCopy() {
+    return RedisInstanceDto(id, name, ip, port, password);
   }
 
   Map<String, dynamic> toMap() {

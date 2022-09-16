@@ -19,12 +19,12 @@
 
 import 'package:paas_dashboard_portal_flutter/api/mongo/mongo_tables_api.dart';
 import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_database.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_dto.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mongo/mongo_table_view_model.dart';
 
 class MongoTableListViewModel extends BaseLoadListPageViewModel<MongoTableViewModel> {
-  final MongoInstancePo mongoInstancePo;
+  final MongoInstanceDto mongoInstancePo;
   final DatabaseResp databaseResp;
 
   MongoTableListViewModel(this.mongoInstancePo, this.databaseResp);

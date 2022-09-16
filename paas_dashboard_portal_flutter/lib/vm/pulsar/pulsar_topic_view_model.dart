@@ -24,7 +24,7 @@ import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_topic.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
 
 class PulsarTopicViewModel extends ChangeNotifier {
-  final PulsarInstancePo pulsarInstancePo;
+  final PulsarInstanceDto pulsarInstancePo;
   final TenantResp tenantResp;
   final NamespaceResp namespaceResp;
   final TopicResp topicResp;

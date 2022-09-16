@@ -19,7 +19,7 @@
 
 package com.paas.dashboard.controller;
 
-import com.paas.dashboard.util.StoragePulsar;
+import com.paas.dashboard.storage.StoragePulsar;
 import com.paas.dashboard.vo.ReqSaveInstancesVo;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +32,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/pulsar")
 public class PulsarController {
 
-    private  StoragePulsar storagePulsar = StoragePulsar.getInstance();
+    private final StoragePulsar storagePulsar = StoragePulsar.getInstance();
 
     @PostMapping("/instances")
-    public HttpStatus saveInstances(@RequestBody ReqSaveInstancesVo reqSaveInstancesVo) {
+    public HttpStatus saveInstance(@RequestBody ReqSaveInstancesVo reqSaveInstancesVo) {
         boolean bool = storagePulsar.saveConfig(reqSaveInstancesVo);
         if (bool) {
             return HttpStatus.OK;

@@ -105,10 +105,10 @@ class _PulsarPageState extends State<PulsarPage> {
           vm.fetchPulsarInstances();
         },
         child: Text(S.of(context).refresh));
-    var exportButton = FormUtil.createExportButton(PulsarInstancePo.fieldList().toList(),
+    var exportButton = FormUtil.createExportButton(PulsarInstanceDto.fieldList().toList(),
         vm.instances.map((e) => e.pulsarInstancePo.toMap().values.toList()).toList(), context);
     var importButton = FormUtil.createImportButton(
-        PulsarInstancePo.fieldList(),
+        PulsarInstanceDto.fieldList(),
         context,
         (data) => vm.createPulsar(
             data[1].toString(),

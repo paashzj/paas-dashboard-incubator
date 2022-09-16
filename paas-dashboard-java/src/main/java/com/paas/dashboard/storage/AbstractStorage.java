@@ -17,14 +17,14 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.paas.dashboard.util.config.BaseConfig;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.shoothzj.javatool.service.JacksonService;
+import com.paas.dashboard.util.JacksonService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

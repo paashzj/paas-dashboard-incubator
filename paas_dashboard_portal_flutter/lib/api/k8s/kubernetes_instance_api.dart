@@ -17,7 +17,7 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/module/k8s/k8s_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/k8s/k8s_instance_dto.dart';
 import 'package:paas_dashboard_portal_flutter/module/ssh/ssh_step.dart';
 
 class K8sInstanceApi {
@@ -29,7 +29,7 @@ class K8sInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<K8sInstancePo>> kubernetesInstances() async {
-    return [K8sInstancePo(0, "example")];
+  static Future<List<K8sInstanceDto>> kubernetesInstances() async {
+    return [K8sInstanceDto(0, "example")];
   }
 }

@@ -25,7 +25,7 @@ import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.
 class MysqlDatabaseViewModel extends BaseLoadListPageViewModel<DatabaseResp> {
   List<DatabaseResp> instance = <DatabaseResp>[];
 
-  final MysqlInstancePo mysqlInstancePo;
+  final MysqlInstanceDto mysqlInstancePo;
 
   MysqlDatabaseViewModel(this.mysqlInstancePo);
 

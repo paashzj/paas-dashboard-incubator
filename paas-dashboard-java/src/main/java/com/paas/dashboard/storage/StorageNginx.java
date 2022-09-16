@@ -17,35 +17,36 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.vo.ReqSaveInstancesVo;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.NginxConfig;
 
 import java.util.Map;
 
-public class StoragePulsar extends AbstractStorage<ReqSaveInstancesVo> {
+public class StorageNginx extends AbstractStorage<NginxConfig> {
 
-    private static final StoragePulsar INSTANCE = new StoragePulsar();
+    private static final StorageNginx INSTANCE = new StorageNginx();
 
-    public static StoragePulsar getInstance() {
+    public static StorageNginx getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.PULSAR_INSTANCE_PATH;
+        return StorageUtil.NGX_INSTANCE_PATH;
     }
 
     @Override
-    public ReqSaveInstancesVo deserializeConfig(String json) {
-        return JacksonService.toObject(json, ReqSaveInstancesVo.class);
+    public NginxConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, NginxConfig.class);
     }
 
     @Override
-    protected Map<String, ReqSaveInstancesVo> deserialize(String json) {
+    protected Map<String, NginxConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }
+
 }

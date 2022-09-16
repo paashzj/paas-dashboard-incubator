@@ -17,10 +17,10 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_dto.dart';
 
 class BkInstanceViewModel {
-  final BkInstancePo bkInstancePo;
+  final BkInstanceDto bkInstancePo;
 
   BkInstanceViewModel(this.bkInstancePo);
 

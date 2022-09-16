@@ -19,10 +19,10 @@
 
 import 'package:paas_dashboard_portal_flutter/module/http_endpoint.dart';
 
-class BkInstancePo extends HttpEndpoint {
+class BkInstanceDto extends HttpEndpoint {
   final int id;
 
-  BkInstancePo(this.id, String name, String host, int port) : super(name, host, port);
+  BkInstanceDto(this.id, String name, String host, int port) : super(name, host, port);
 
   Map<String, dynamic> toMap() {
     return {

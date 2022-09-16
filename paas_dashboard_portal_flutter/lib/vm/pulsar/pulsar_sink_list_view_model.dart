@@ -25,7 +25,7 @@ import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.
 import 'package:paas_dashboard_portal_flutter/vm/pulsar/pulsar_sink_view_model.dart';
 
 class PulsarSinkListViewModel extends BaseLoadListPageViewModel<PulsarSinkViewModel> {
-  final PulsarInstancePo pulsarInstancePo;
+  final PulsarInstanceDto pulsarInstancePo;
   final TenantResp tenantResp;
   final NamespaceResp namespaceResp;
 

@@ -17,35 +17,25 @@
 // under the License.
 //
 
-class MongoInstancePo {
+class K8sInstanceDto {
   final int id;
   final String name;
-  final String addr;
-  final String username;
-  final String password;
 
-  MongoInstancePo(this.id, this.name, this.addr, this.username, this.password);
-
-  MongoInstancePo deepCopy() {
-    return MongoInstancePo(id, name, addr, username, password);
-  }
+  K8sInstanceDto(this.id, this.name);
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
-      'addr': addr,
-      'username': username,
-      'password': password,
     };
   }
 
   static List<String> fieldList() {
-    return ['id', 'name', 'addr', 'username', 'password'];
+    return ['id', 'name'];
   }
 
   @override
   String toString() {
-    return 'MongoInstance{id: $id, name: $name}';
+    return 'K8sInstance{id: $id, name: $name}';
   }
 }

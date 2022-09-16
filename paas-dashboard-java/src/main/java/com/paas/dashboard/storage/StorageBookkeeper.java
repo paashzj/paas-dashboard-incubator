@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.LvsConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.BookkeeperConfig;
 
 import java.util.Map;
 
-public class StorageLvs extends AbstractStorage<LvsConfig> {
+public class StorageBookkeeper extends AbstractStorage<BookkeeperConfig> {
 
-    private static final StorageLvs INSTANCE = new StorageLvs();
+    private static final StorageBookkeeper INSTANCE = new StorageBookkeeper();
 
-    public static StorageLvs getInstance() {
+    public static StorageBookkeeper getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.LVS_INSTANCE_PATH;
+        return StorageUtil.BOOKKEEPER_INSTANCE_PATH;
     }
 
     @Override
-    public LvsConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, LvsConfig.class);
+    public BookkeeperConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, BookkeeperConfig.class);
     }
 
     @Override
-    protected Map<String, LvsConfig> deserialize(String json) {
+    protected Map<String, BookkeeperConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

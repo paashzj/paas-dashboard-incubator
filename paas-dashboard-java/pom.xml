@@ -37,6 +37,7 @@
     <properties>
         <java.version>17</java.version>
         <!-- dependency -->
+        <guava.version>31.1-jre</guava.version>
         <lombok.version>1.18.24</lombok.version>
         <zookeeper.version>3.8.0</zookeeper.version>
         <!-- plugin -->
@@ -69,17 +70,17 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.shoothzj</groupId>
-            <artifactId>java-tool</artifactId>
-            <version>3.1.15</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

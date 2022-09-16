@@ -19,7 +19,7 @@
 
 import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 
-class PulsarInstancePo {
+class PulsarInstanceDto {
   final int id;
   final String name;
   final String host;
@@ -33,11 +33,11 @@ class PulsarInstancePo {
   final String clientKeyFile;
   final String clientKeyPassword;
 
-  PulsarInstancePo(this.id, this.name, this.host, this.port, this.functionHost, this.functionPort, this.enableTls,
+  PulsarInstanceDto(this.id, this.name, this.host, this.port, this.functionHost, this.functionPort, this.enableTls,
       this.functionEnableTls, this.caFile, this.clientCertFile, this.clientKeyFile, this.clientKeyPassword);
 
-  PulsarInstancePo deepCopy() {
-    return PulsarInstancePo(id, name, host, port, functionHost, functionPort, enableTls, functionEnableTls, caFile,
+  PulsarInstanceDto deepCopy() {
+    return PulsarInstanceDto(id, name, host, port, functionHost, functionPort, enableTls, functionEnableTls, caFile,
         clientCertFile, clientKeyFile, clientKeyPassword);
   }
 

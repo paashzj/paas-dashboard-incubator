@@ -30,7 +30,7 @@ import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.
 import 'package:paas_dashboard_portal_flutter/vm/pulsar/pulsar_tenant_view_model.dart';
 
 class PulsarInstanceViewModel extends BaseLoadListPageViewModel<PulsarTenantViewModel> {
-  final PulsarInstancePo pulsarInstancePo;
+  final PulsarInstanceDto pulsarInstancePo;
 
   double progress = 0;
 

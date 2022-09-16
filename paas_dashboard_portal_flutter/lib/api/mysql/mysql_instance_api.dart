@@ -29,9 +29,9 @@ class MysqlInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<MysqlInstancePo>> mysqlInstances() async {
+  static Future<List<MysqlInstanceDto>> mysqlInstances() async {
     return [
-      MysqlInstancePo(0, "example", MysqlConst.defaultHost, MysqlConst.defaultPort, MysqlConst.defaultUsername,
+      MysqlInstanceDto(0, "example", MysqlConst.defaultHost, MysqlConst.defaultPort, MysqlConst.defaultUsername,
           MysqlConst.defaultPassword)
     ];
   }

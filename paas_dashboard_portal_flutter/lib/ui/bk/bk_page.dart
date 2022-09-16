@@ -19,7 +19,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/generated/l10n.dart';
-import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_dto.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/data_cell_util.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/form_util.dart';
 import 'package:paas_dashboard_portal_flutter/vm/bk/bk_instance_list_view_model.dart';
@@ -50,10 +50,10 @@ class _BkPageState extends State<BkPage> {
           });
         },
         child: Text(S.of(context).refresh));
-    var exportButton = FormUtil.createExportButton(BkInstancePo.fieldList().toList(),
+    var exportButton = FormUtil.createExportButton(BkInstanceDto.fieldList().toList(),
         vm.instances.map((e) => e.bkInstancePo.toMap().values.toList()).toList(), context);
     var importButton = FormUtil.createImportButton(
-        BkInstancePo.fieldList(), context, (data) => vm.createBk(data[1], data[2], data[3]));
+        BkInstanceDto.fieldList(), context, (data) => vm.createBk(data[1], data[2], data[3]));
     var body = ListView(
       children: [
         SizedBox(

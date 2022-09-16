@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.KubernetesConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.LvsConfig;
 
 import java.util.Map;
 
-public class StorageK8s extends AbstractStorage<KubernetesConfig> {
+public class StorageLvs extends AbstractStorage<LvsConfig> {
 
-    private static final StorageK8s INSTANCE = new StorageK8s();
+    private static final StorageLvs INSTANCE = new StorageLvs();
 
-    public static StorageK8s getInstance() {
+    public static StorageLvs getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.K8S_INSTANCE_PATH;
+        return StorageUtil.LVS_INSTANCE_PATH;
     }
 
     @Override
-    public KubernetesConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, KubernetesConfig.class);
+    public LvsConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, LvsConfig.class);
     }
 
     @Override
-    protected Map<String, KubernetesConfig> deserialize(String json) {
+    protected Map<String, LvsConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

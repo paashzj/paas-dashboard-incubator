@@ -38,7 +38,7 @@ class PulsarInstanceApi {
       String clientKeyFile,
       String clientKeyPassword) async {
     var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarInstance}');
-    var pulsarInstancePo = PulsarInstancePo(1, name, host, port, functionHost, functionPort, enableTls,
+    var pulsarInstancePo = PulsarInstanceDto(1, name, host, port, functionHost, functionPort, enableTls,
         functionEnableTls, caFile, clientCertFile, clientKeyFile, clientKeyPassword);
     var body = json.encode(pulsarInstancePo.toMap());
     var res = await http.post(url, headers: {"Content-Type": "application/json"}, body: body);
@@ -65,9 +65,9 @@ class PulsarInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<PulsarInstancePo>> pulsarInstances() async {
+  static Future<List<PulsarInstanceDto>> pulsarInstances() async {
     return [
-      PulsarInstancePo(
+      PulsarInstanceDto(
           0,
           "example",
           PulsarConst.defaultHost,
@@ -83,7 +83,7 @@ class PulsarInstanceApi {
     ];
   }
 
-  static Future<PulsarInstancePo?> pulsarInstance(String name) async {
+  static Future<PulsarInstanceDto?> pulsarInstance(String name) async {
     throw UnimplementedError();
   }
 }

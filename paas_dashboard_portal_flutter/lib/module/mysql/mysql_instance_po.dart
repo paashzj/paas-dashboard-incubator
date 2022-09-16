@@ -17,7 +17,7 @@
 // under the License.
 //
 
-class MysqlInstancePo {
+class MysqlInstanceDto {
   final int id;
   final String name;
   final String host;
@@ -25,10 +25,10 @@ class MysqlInstancePo {
   final String username;
   final String password;
 
-  MysqlInstancePo(this.id, this.name, this.host, this.port, this.username, this.password);
+  MysqlInstanceDto(this.id, this.name, this.host, this.port, this.username, this.password);
 
-  MysqlInstancePo deepCopy() {
-    return MysqlInstancePo(id, name, host, port, username, password);
+  MysqlInstanceDto deepCopy() {
+    return MysqlInstanceDto(id, name, host, port, username, password);
   }
 
   Map<String, dynamic> toMap() {

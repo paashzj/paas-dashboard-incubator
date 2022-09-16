@@ -29,11 +29,11 @@ class ZkInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<ZkInstancePo>> zooKeeperInstances() async {
-    return [ZkInstancePo(0, "example", ZkConst.defaultHost, ZkConst.defaultPort)];
+  static Future<List<ZkInstanceDto>> zooKeeperInstances() async {
+    return [ZkInstanceDto(0, "example", ZkConst.defaultHost, ZkConst.defaultPort)];
   }
 
-  static Future<ZkInstancePo?> zooKeeperInstance(String name) async {
+  static Future<ZkInstanceDto?> zooKeeperInstance(String name) async {
     throw UnimplementedError();
   }
 }

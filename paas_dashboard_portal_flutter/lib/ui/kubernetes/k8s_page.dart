@@ -19,7 +19,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/generated/l10n.dart';
-import 'package:paas_dashboard_portal_flutter/module/k8s/k8s_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/k8s/k8s_instance_dto.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/data_cell_util.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/form_util.dart';
 import 'package:paas_dashboard_portal_flutter/vm/kubernetes/k8s_instance_list_view_model.dart';
@@ -49,7 +49,7 @@ class _K8sPageState extends State<K8sPage> {
           });
         },
         child: Text(S.of(context).refresh));
-    var exportButton = FormUtil.createExportButton(K8sInstancePo.fieldList().toList(),
+    var exportButton = FormUtil.createExportButton(K8sInstanceDto.fieldList().toList(),
         vm.instances.map((e) => e.k8sInstancePo.toMap().values.toList()).toList(), context);
     var body = ListView(
       children: [

@@ -25,7 +25,7 @@ import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.
 import 'package:sprintf/sprintf.dart';
 
 class MysqlTableColumnViewModel extends BaseLoadListPageViewModel<Object> {
-  MysqlInstancePo mysqlInstancePo;
+  MysqlInstanceDto mysqlInstancePo;
 
   String dbname;
 

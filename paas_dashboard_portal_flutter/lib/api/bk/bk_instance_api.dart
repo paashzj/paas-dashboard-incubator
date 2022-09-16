@@ -17,7 +17,7 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_dto.dart';
 import 'package:paas_dashboard_portal_flutter/module/bk/const.dart';
 
 class BkInstanceApi {
@@ -29,11 +29,11 @@ class BkInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<BkInstancePo>> bookkeeperInstances() async {
-    return [BkInstancePo(0, "example", BkConst.defaultHost, BkConst.defaultPort)];
+  static Future<List<BkInstanceDto>> bookkeeperInstances() async {
+    return [BkInstanceDto(0, "example", BkConst.defaultHost, BkConst.defaultPort)];
   }
 
-  static Future<BkInstancePo?> bookkeeperInstance(String name) async {
+  static Future<BkInstanceDto?> bookkeeperInstance(String name) async {
     throw UnimplementedError();
   }
 }

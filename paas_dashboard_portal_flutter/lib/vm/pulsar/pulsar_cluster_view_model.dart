@@ -26,7 +26,7 @@ import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.
 class PulsarClusterViewModel extends BaseLoadListPageViewModel<ClusterResp> {
   List<ClusterResp> instances = <ClusterResp>[];
 
-  final PulsarInstancePo pulsarInstancePo;
+  final PulsarInstanceDto pulsarInstancePo;
 
   PulsarClusterViewModel(this.pulsarInstancePo);
 

@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.ZooKeeperConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.RedisConfig;
 
 import java.util.Map;
 
-public class StorageZooKeeper extends AbstractStorage<ZooKeeperConfig> {
+public class StorageRedis extends AbstractStorage<RedisConfig> {
 
-    private static final StorageZooKeeper INSTANCE = new StorageZooKeeper();
+    private static final StorageRedis INSTANCE = new StorageRedis();
 
-    public static StorageZooKeeper getInstance() {
+    public static StorageRedis getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.ZK_INSTANCE_PATH;
+        return StorageUtil.REDIS_INSTANCE_PATH;
     }
 
     @Override
-    public ZooKeeperConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, ZooKeeperConfig.class);
+    public RedisConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, RedisConfig.class);
     }
 
     @Override
-    protected Map<String, ZooKeeperConfig> deserialize(String json) {
+    protected Map<String, RedisConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

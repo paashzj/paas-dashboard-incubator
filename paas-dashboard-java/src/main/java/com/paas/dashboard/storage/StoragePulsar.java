@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.MinioConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.vo.ReqSaveInstancesVo;
 
 import java.util.Map;
 
-public class StorageMinio extends AbstractStorage<MinioConfig> {
+public class StoragePulsar extends AbstractStorage<ReqSaveInstancesVo> {
 
-    private static final StorageMinio INSTANCE = new StorageMinio();
+    private static final StoragePulsar INSTANCE = new StoragePulsar();
 
-    public static StorageMinio getInstance() {
+    public static StoragePulsar getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.MINIO_INSTANCE_PATH;
+        return StorageUtil.PULSAR_INSTANCE_PATH;
     }
 
     @Override
-    public MinioConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, MinioConfig.class);
+    public ReqSaveInstancesVo deserializeConfig(String json) {
+        return JacksonService.toObject(json, ReqSaveInstancesVo.class);
     }
 
     @Override
-    protected Map<String, MinioConfig> deserialize(String json) {
+    protected Map<String, ReqSaveInstancesVo> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

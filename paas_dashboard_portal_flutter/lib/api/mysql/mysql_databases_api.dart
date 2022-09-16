@@ -43,11 +43,11 @@ class MysqlDatabaseApi {
   }
 
   static Future<MysqlSqlResult> getData(
-      MysqlInstancePo mysqlConn, String dbname, String tableName, String where) async {
+      MysqlInstanceDto mysqlConn, String dbname, String tableName, String where) async {
     throw UnimplementedError();
   }
 
-  static Future<MysqlSqlResult> getSqlData(String sql, MysqlInstancePo mysqlConn, String dbname) async {
+  static Future<MysqlSqlResult> getSqlData(String sql, MysqlInstanceDto mysqlConn, String dbname) async {
     throw UnimplementedError();
   }
 

@@ -18,7 +18,7 @@
 //
 
 import 'package:paas_dashboard_portal_flutter/module/mongo/const.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_dto.dart';
 
 class MongoInstanceApi {
   static Future<void> saveMongo(String name, String addr, String username, String password) async {
@@ -29,7 +29,7 @@ class MongoInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<MongoInstancePo>> mongoInstances() async {
-    return [MongoInstancePo(0, "example", MongoConst.defaultAddr, "", "")];
+  static Future<List<MongoInstanceDto>> mongoInstances() async {
+    return [MongoInstanceDto(0, "example", MongoConst.defaultAddr, "", "")];
   }
 }

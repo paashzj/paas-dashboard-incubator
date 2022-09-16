@@ -17,36 +17,35 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.NginxConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.KubernetesConfig;
 
 import java.util.Map;
 
-public class StorageNginx extends AbstractStorage<NginxConfig> {
+public class StorageK8s extends AbstractStorage<KubernetesConfig> {
 
-    private static final StorageNginx INSTANCE = new StorageNginx();
+    private static final StorageK8s INSTANCE = new StorageK8s();
 
-    public static StorageNginx getInstance() {
+    public static StorageK8s getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.NGX_INSTANCE_PATH;
+        return StorageUtil.K8S_INSTANCE_PATH;
     }
 
     @Override
-    public NginxConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, NginxConfig.class);
+    public KubernetesConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, KubernetesConfig.class);
     }
 
     @Override
-    protected Map<String, NginxConfig> deserialize(String json) {
+    protected Map<String, KubernetesConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }
-
 }

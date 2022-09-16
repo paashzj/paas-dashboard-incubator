@@ -22,7 +22,7 @@ import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_instance_po.dar
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';
 
 class MysqlInstanceViewModel extends BaseLoadListPageViewModel<String> {
-  final MysqlInstancePo mysqlInstancePo;
+  final MysqlInstanceDto mysqlInstancePo;
 
   MysqlInstanceViewModel(this.mysqlInstancePo);
 

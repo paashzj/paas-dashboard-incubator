@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.BookkeeperConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.ZooKeeperConfig;
 
 import java.util.Map;
 
-public class StorageBookkeeper extends AbstractStorage<BookkeeperConfig> {
+public class StorageZooKeeper extends AbstractStorage<ZooKeeperConfig> {
 
-    private static final StorageBookkeeper INSTANCE = new StorageBookkeeper();
+    private static final StorageZooKeeper INSTANCE = new StorageZooKeeper();
 
-    public static StorageBookkeeper getInstance() {
+    public static StorageZooKeeper getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.BOOKKEEPER_INSTANCE_PATH;
+        return StorageUtil.ZK_INSTANCE_PATH;
     }
 
     @Override
-    public BookkeeperConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, BookkeeperConfig.class);
+    public ZooKeeperConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, ZooKeeperConfig.class);
     }
 
     @Override
-    protected Map<String, BookkeeperConfig> deserialize(String json) {
+    protected Map<String, ZooKeeperConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

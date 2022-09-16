@@ -17,11 +17,15 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
+
+import com.paas.dashboard.util.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 
+@Slf4j
 public class StorageUtil {
 
     public static final String USER_DIR = System.getProperty("user.home");
@@ -45,11 +49,10 @@ public class StorageUtil {
 
     public static final String LVS_INSTANCE_PATH = STORAGE_PREFIX + "lvs-instance-v1.json";
 
-    public static final String SETTING_PATH = STORAGE_PREFIX + "dev-tools-kotlin-instance-v1.json";
-
     static {
         File storageDir = new File(STORAGE_DIR);
-        storageDir.mkdirs();
+        boolean result = storageDir.mkdirs();
+        log.info("create storage dir result {}", result);
 
         FileUtil.ensureFileExists(K8S_INSTANCE_PATH);
 

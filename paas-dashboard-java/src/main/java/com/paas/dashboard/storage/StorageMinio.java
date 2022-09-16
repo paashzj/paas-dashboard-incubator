@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.MysqlConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.MinioConfig;
 
 import java.util.Map;
 
-public class StorageMysql extends AbstractStorage<MysqlConfig> {
+public class StorageMinio extends AbstractStorage<MinioConfig> {
 
-    private static final StorageMysql INSTANCE = new StorageMysql();
+    private static final StorageMinio INSTANCE = new StorageMinio();
 
-    public static StorageMysql getInstance() {
+    public static StorageMinio getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.MYSQL_INSTANCE_PATH;
+        return StorageUtil.MINIO_INSTANCE_PATH;
     }
 
     @Override
-    public MysqlConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, MysqlConfig.class);
+    public MinioConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, MinioConfig.class);
     }
 
     @Override
-    protected Map<String, MysqlConfig> deserialize(String json) {
+    protected Map<String, MinioConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

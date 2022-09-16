@@ -19,10 +19,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_database.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_dto.dart';
 
 class MongoDatabaseViewModel extends ChangeNotifier {
-  final MongoInstancePo mongoInstancePo;
+  final MongoInstanceDto mongoInstancePo;
   final DatabaseResp databaseResp;
 
   MongoDatabaseViewModel(this.mongoInstancePo, this.databaseResp);

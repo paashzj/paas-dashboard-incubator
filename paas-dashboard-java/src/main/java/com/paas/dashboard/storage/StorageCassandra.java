@@ -17,10 +17,10 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
+import com.paas.dashboard.util.JacksonService;
 import com.paas.dashboard.util.config.CassandraConfig;
 
 import java.util.Map;

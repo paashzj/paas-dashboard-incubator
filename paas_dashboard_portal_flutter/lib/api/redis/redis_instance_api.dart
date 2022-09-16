@@ -29,11 +29,11 @@ class RedisInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<List<RedisInstancePo>> redisInstances() async {
-    return [RedisInstancePo(0, "example", RedisConst.defaultIp, RedisConst.defaultPort, RedisConst.defaultPassword)];
+  static Future<List<RedisInstanceDto>> redisInstances() async {
+    return [RedisInstanceDto(0, "example", RedisConst.defaultIp, RedisConst.defaultPort, RedisConst.defaultPassword)];
   }
 
-  static Future<RedisInstancePo?> redisInstance(String name) async {
+  static Future<RedisInstanceDto?> redisInstance(String name) async {
     throw UnimplementedError();
   }
 }

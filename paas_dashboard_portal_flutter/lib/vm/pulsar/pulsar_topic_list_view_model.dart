@@ -25,7 +25,7 @@ import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.
 import 'package:paas_dashboard_portal_flutter/vm/pulsar/pulsar_topic_view_model.dart';
 
 class PulsarTopicListViewModel extends BaseLoadListPageViewModel<PulsarTopicViewModel> {
-  final PulsarInstancePo pulsarInstancePo;
+  final PulsarInstanceDto pulsarInstancePo;
   final TenantResp tenantResp;
   final NamespaceResp namespaceResp;
 

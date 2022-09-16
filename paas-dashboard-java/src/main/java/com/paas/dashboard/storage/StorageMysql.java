@@ -17,34 +17,34 @@
  * under the License.
  */
 
-package com.paas.dashboard.util;
+package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.shoothzj.javatool.service.JacksonService;
-import com.paas.dashboard.util.config.RedisConfig;
+import com.paas.dashboard.util.JacksonService;
+import com.paas.dashboard.util.config.MysqlConfig;
 
 import java.util.Map;
 
-public class StorageRedis extends AbstractStorage<RedisConfig> {
+public class StorageMysql extends AbstractStorage<MysqlConfig> {
 
-    private static final StorageRedis INSTANCE = new StorageRedis();
+    private static final StorageMysql INSTANCE = new StorageMysql();
 
-    public static StorageRedis getInstance() {
+    public static StorageMysql getInstance() {
         return INSTANCE;
     }
 
     @Override
     protected String getConfigPath() {
-        return StorageUtil.REDIS_INSTANCE_PATH;
+        return StorageUtil.MYSQL_INSTANCE_PATH;
     }
 
     @Override
-    public RedisConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, RedisConfig.class);
+    public MysqlConfig deserializeConfig(String json) {
+        return JacksonService.toObject(json, MysqlConfig.class);
     }
 
     @Override
-    protected Map<String, RedisConfig> deserialize(String json) {
+    protected Map<String, MysqlConfig> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }
