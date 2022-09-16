@@ -17,31 +17,22 @@
 // under the License.
 //
 
-import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mysql/const.dart';
+import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_instance_po.dart';
 
-class MongoInstanceViewModel extends ChangeNotifier {
-  final MongoInstancePo mongoInstancePo;
-
-  MongoInstanceViewModel(this.mongoInstancePo);
-
-  MongoInstanceViewModel deepCopy() {
-    return MongoInstanceViewModel(mongoInstancePo.deepCopy());
+class MysqlInstanceApi {
+  static Future<void> saveMysql(String name, String host, int port, String username, String password) async {
+    throw UnimplementedError();
   }
 
-  int get id {
-    return mongoInstancePo.id;
+  static Future<void> deleteMysql(int id) async {
+    throw UnimplementedError();
   }
 
-  String get name {
-    return mongoInstancePo.name;
-  }
-
-  String get addr {
-    return mongoInstancePo.addr;
-  }
-
-  String get username {
-    return mongoInstancePo.username;
+  static Future<List<MysqlInstancePo>> mysqlInstances() async {
+    return [
+      MysqlInstancePo(0, "example", MysqlConst.defaultHost, MysqlConst.defaultPort, MysqlConst.defaultUsername,
+          MysqlConst.defaultPassword)
+    ];
   }
 }

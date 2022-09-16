@@ -17,31 +17,28 @@
 // under the License.
 //
 
-import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/http_endpoint.dart';
 
-class MongoInstanceViewModel extends ChangeNotifier {
-  final MongoInstancePo mongoInstancePo;
+class BkInstancePo extends HttpEndpoint {
+  final int id;
 
-  MongoInstanceViewModel(this.mongoInstancePo);
+  BkInstancePo(this.id, String name, String host, int port) : super(name, host, port);
 
-  MongoInstanceViewModel deepCopy() {
-    return MongoInstanceViewModel(mongoInstancePo.deepCopy());
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'host': host,
+      'port': port,
+    };
   }
 
-  int get id {
-    return mongoInstancePo.id;
+  static List<String> fieldList() {
+    return ['id', 'name', 'host', 'port'];
   }
 
-  String get name {
-    return mongoInstancePo.name;
-  }
-
-  String get addr {
-    return mongoInstancePo.addr;
-  }
-
-  String get username {
-    return mongoInstancePo.username;
+  @override
+  String toString() {
+    return 'BookKeeperInstance{id: $id, name: $name, host: $host, port: $port}';
   }
 }

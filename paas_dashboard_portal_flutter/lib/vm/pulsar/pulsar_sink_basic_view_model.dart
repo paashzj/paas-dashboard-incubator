@@ -21,7 +21,7 @@ import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_sink_api.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_namespace.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_sink.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_tenant.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/pulsar_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_view_model.dart';
 
 class PulsarSinkBasicViewModel extends BaseLoadViewModel {

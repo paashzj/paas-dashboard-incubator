@@ -19,7 +19,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/generated/l10n.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/bk_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/data_cell_util.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/form_util.dart';
 import 'package:paas_dashboard_portal_flutter/vm/bk/bk_instance_list_view_model.dart';

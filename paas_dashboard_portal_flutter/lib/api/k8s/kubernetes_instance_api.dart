@@ -17,27 +17,19 @@
 // under the License.
 //
 
-import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/api/k8s/kubernetes_instance_api.dart';
+import 'package:paas_dashboard_portal_flutter/module/k8s/k8s_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/module/ssh/ssh_step.dart';
-import 'package:paas_dashboard_portal_flutter/vm/kubernetes/k8s_instance_view_model.dart';
 
-class K8sInstanceListViewModel extends ChangeNotifier {
-  List<K8sInstanceViewModel> instances = <K8sInstanceViewModel>[];
-
-  Future<void> fetchKubernetesInstances() async {
-    final results = await K8sInstanceApi.kubernetesInstances();
-    instances = results.map((e) => K8sInstanceViewModel(e)).toList();
-    notifyListeners();
+class K8sInstanceApi {
+  static Future<void> saveKubernetesSsh(String name, List<SshStep> sshSteps) async {
+    throw UnimplementedError();
   }
 
-  Future<void> createKubernetesSsh(String name, SshStep sshStep) async {
-    K8sInstanceApi.saveKubernetesSsh(name, [sshStep]);
-    fetchKubernetesInstances();
+  static Future<void> deleteKubernetes(int id) async {
+    throw UnimplementedError();
   }
 
-  Future<void> deleteKubernetes(int id) async {
-    K8sInstanceApi.deleteKubernetes(id);
-    fetchKubernetesInstances();
+  static Future<List<K8sInstancePo>> kubernetesInstances() async {
+    return [K8sInstancePo(0, "example")];
   }
 }

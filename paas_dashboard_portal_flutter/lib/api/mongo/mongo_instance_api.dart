@@ -17,28 +17,19 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/persistent/po/http_endpoint.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/const.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
 
-class ZkInstancePo extends HttpEndpoint {
-  final int id;
-
-  ZkInstancePo(this.id, String name, String host, int port) : super(name, host, port);
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'host': host,
-      'port': port,
-    };
+class MongoInstanceApi {
+  static Future<void> saveMongo(String name, String addr, String username, String password) async {
+    throw UnimplementedError();
   }
 
-  static Set<String> fieldList() {
-    return {'id', 'name', 'host', 'port'};
+  static Future<void> deleteMongo(int id) async {
+    throw UnimplementedError();
   }
 
-  @override
-  String toString() {
-    return 'ZooKeeperInstance{id: $id, name: $name, host: $host, port: $port}';
+  static Future<List<MongoInstancePo>> mongoInstances() async {
+    return [MongoInstancePo(0, "example", MongoConst.defaultAddr, "", "")];
   }
 }

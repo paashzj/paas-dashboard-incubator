@@ -17,31 +17,23 @@
 // under the License.
 //
 
-import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/bk/bk_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/bk/const.dart';
 
-class MongoInstanceViewModel extends ChangeNotifier {
-  final MongoInstancePo mongoInstancePo;
-
-  MongoInstanceViewModel(this.mongoInstancePo);
-
-  MongoInstanceViewModel deepCopy() {
-    return MongoInstanceViewModel(mongoInstancePo.deepCopy());
+class BkInstanceApi {
+  static Future<void> saveBookkeeper(String name, String host, int port) async {
+    throw UnimplementedError();
   }
 
-  int get id {
-    return mongoInstancePo.id;
+  static Future<void> deleteBookkeeper(int id) async {
+    throw UnimplementedError();
   }
 
-  String get name {
-    return mongoInstancePo.name;
+  static Future<List<BkInstancePo>> bookkeeperInstances() async {
+    return [BkInstancePo(0, "example", BkConst.defaultHost, BkConst.defaultPort)];
   }
 
-  String get addr {
-    return mongoInstancePo.addr;
-  }
-
-  String get username {
-    return mongoInstancePo.username;
+  static Future<BkInstancePo?> bookkeeperInstance(String name) async {
+    throw UnimplementedError();
   }
 }

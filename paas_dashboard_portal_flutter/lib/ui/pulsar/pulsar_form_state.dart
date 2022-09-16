@@ -20,7 +20,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/generated/l10n.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/persistent.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_form_dto.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/form_util.dart';
 
 class PulsarForm extends StatefulWidget {

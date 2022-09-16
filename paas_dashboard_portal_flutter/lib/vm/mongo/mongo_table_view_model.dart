@@ -20,7 +20,7 @@
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_database.dart';
 import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_table.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/ui/component/dynamic_filter_table.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';
 

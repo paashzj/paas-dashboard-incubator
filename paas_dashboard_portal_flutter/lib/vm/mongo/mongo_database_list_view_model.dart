@@ -18,7 +18,7 @@
 //
 
 import 'package:paas_dashboard_portal_flutter/api/mongo/mongo_databases_api.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mongo/mongo_database_view_model.dart';
 

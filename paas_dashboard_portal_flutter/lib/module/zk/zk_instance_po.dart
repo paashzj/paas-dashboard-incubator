@@ -17,12 +17,12 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/persistent/po/http_endpoint.dart';
+import 'package:paas_dashboard_portal_flutter/module/http_endpoint.dart';
 
-class BkInstancePo extends HttpEndpoint {
+class ZkInstancePo extends HttpEndpoint {
   final int id;
 
-  BkInstancePo(this.id, String name, String host, int port) : super(name, host, port);
+  ZkInstancePo(this.id, String name, String host, int port) : super(name, host, port);
 
   Map<String, dynamic> toMap() {
     return {
@@ -33,12 +33,12 @@ class BkInstancePo extends HttpEndpoint {
     };
   }
 
-  static List<String> fieldList() {
-    return ['id', 'name', 'host', 'port'];
+  static Set<String> fieldList() {
+    return {'id', 'name', 'host', 'port'};
   }
 
   @override
   String toString() {
-    return 'BookKeeperInstance{id: $id, name: $name, host: $host, port: $port}';
+    return 'ZooKeeperInstance{id: $id, name: $name, host: $host, port: $port}';
   }
 }

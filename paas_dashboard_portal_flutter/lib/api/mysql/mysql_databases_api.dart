@@ -20,7 +20,7 @@
 import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_database.dart';
 import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_sql_result.dart';
 import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_table.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/mysql_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/ui/component/dynamic_filter_table.dart';
 
 class MysqlDatabaseApi {

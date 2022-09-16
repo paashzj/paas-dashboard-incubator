@@ -19,7 +19,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:paas_dashboard_portal_flutter/generated/l10n.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/redis_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/redis/redis_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/route/page_route_const.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/data_cell_util.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/form_util.dart';

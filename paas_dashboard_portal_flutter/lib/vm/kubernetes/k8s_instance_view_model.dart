@@ -17,7 +17,7 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/persistent/po/k8s_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/k8s/k8s_instance_po.dart';
 
 class K8sInstanceViewModel {
   final K8sInstancePo k8sInstancePo;

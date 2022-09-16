@@ -17,26 +17,19 @@
 // under the License.
 //
 
-class SqlPo {
-  final int id;
-  final String name;
-  final String sql;
+class PulsarFormDto {
+  late int id;
+  late String name = "";
+  late String host = "";
+  late int port = 8080;
+  late String functionHost = "";
+  late int functionPort = 6650;
+  late bool enableTls = false;
+  late bool functionEnableTls = false;
+  late String caFile = "";
+  late String clientCertFile = "";
+  late String clientKeyFile = "";
+  late String clientKeyPassword = "";
 
-  SqlPo(this.id, this.name, this.sql);
-
-  SqlPo deepCopy() {
-    return SqlPo(id, name, sql);
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'sql': sql,
-    };
-  }
-
-  static List<String> fieldList() {
-    return ['id', 'name', 'sql'];
-  }
+  PulsarFormDto();
 }

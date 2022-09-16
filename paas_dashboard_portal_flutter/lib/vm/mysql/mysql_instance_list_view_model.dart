@@ -18,25 +18,25 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/persistent.dart';
+import 'package:paas_dashboard_portal_flutter/api/mysql/mysql_instance_api.dart';
 import 'package:paas_dashboard_portal_flutter/vm/mysql/mysql_instance_view_model.dart';
 
 class MysqlInstanceListViewModel extends ChangeNotifier {
   List<MysqlInstanceViewModel> instances = <MysqlInstanceViewModel>[];
 
   Future<void> fetchMysqlInstances() async {
-    final results = await Persistent.mysqlInstances();
+    final results = await MysqlInstanceApi.mysqlInstances();
     instances = results.map((e) => MysqlInstanceViewModel(e)).toList();
     notifyListeners();
   }
 
   Future<void> createMysql(String name, String host, int port, String username, String password) async {
-    Persistent.saveMysql(name, host, port, username, password);
+    MysqlInstanceApi.saveMysql(name, host, port, username, password);
     fetchMysqlInstances();
   }
 
   Future<void> deleteMysql(int id) async {
-    Persistent.deleteMysql(id);
+    MysqlInstanceApi.deleteMysql(id);
     fetchMysqlInstances();
   }
 }

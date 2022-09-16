@@ -17,20 +17,11 @@
 // under the License.
 //
 
-import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_instance_api.dart';
-import 'package:paas_dashboard_portal_flutter/vm/pulsar/pulsar_instance_view_model.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/const.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
 
-class PulsarInstanceListViewModel extends ChangeNotifier {
-  List<PulsarInstanceViewModel> instances = <PulsarInstanceViewModel>[];
-
-  Future<void> fetchPulsarInstances() async {
-    final results = await PulsarInstanceApi.pulsarInstances();
-    instances = results.map((e) => PulsarInstanceViewModel(e)).toList();
-    notifyListeners();
-  }
-
-  Future<void> createPulsar(
+class PulsarInstanceApi {
+  static Future<void> savePulsar(
       String name,
       String host,
       int port,
@@ -42,12 +33,10 @@ class PulsarInstanceListViewModel extends ChangeNotifier {
       String clientCertFile,
       String clientKeyFile,
       String clientKeyPassword) async {
-    PulsarInstanceApi.savePulsar(name, host, port, functionHost, functionPort, enableTls, functionEnableTls, caFile,
-        clientCertFile, clientKeyFile, clientKeyPassword);
-    fetchPulsarInstances();
+    throw UnimplementedError();
   }
 
-  Future<void> updatePulsar(
+  static Future<void> updatePulsar(
       int id,
       String name,
       String host,
@@ -60,13 +49,32 @@ class PulsarInstanceListViewModel extends ChangeNotifier {
       String clientCertFile,
       String clientKeyFile,
       String clientKeyPassword) async {
-    PulsarInstanceApi.updatePulsar(id, name, host, port, functionHost, functionPort, enableTls, functionEnableTls,
-        caFile, clientCertFile, clientKeyFile, clientKeyPassword);
-    fetchPulsarInstances();
+    throw UnimplementedError();
   }
 
-  Future<void> deletePulsar(int id) async {
-    PulsarInstanceApi.deletePulsar(id);
-    fetchPulsarInstances();
+  static Future<void> deletePulsar(int id) async {
+    throw UnimplementedError();
+  }
+
+  static Future<List<PulsarInstancePo>> pulsarInstances() async {
+    return [
+      PulsarInstancePo(
+          0,
+          "example",
+          PulsarConst.defaultHost,
+          PulsarConst.defaultBrokerPort,
+          PulsarConst.defaultHost,
+          PulsarConst.defaultFunctionPort,
+          PulsarConst.defaultEnableTls == 1,
+          PulsarConst.defaultFunctionEnableTls == 1,
+          PulsarConst.defaultCaFile,
+          PulsarConst.defaultClientCertFile,
+          PulsarConst.defaultClientKeyFile,
+          PulsarConst.defaultClientKeyPassword)
+    ];
+  }
+
+  static Future<PulsarInstancePo?> pulsarInstance(String name) async {
+    throw UnimplementedError();
   }
 }

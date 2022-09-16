@@ -17,26 +17,23 @@
 // under the License.
 //
 
-class CodePo {
-  final int id;
-  final String name;
-  final String code;
+import 'package:paas_dashboard_portal_flutter/module/redis/const.dart';
+import 'package:paas_dashboard_portal_flutter/module/redis/redis_instance_po.dart';
 
-  CodePo(this.id, this.name, this.code);
-
-  CodePo deepCopy() {
-    return CodePo(id, name, code);
+class RedisInstanceApi {
+  static Future<void> saveRedis(String name, String addr, String username, String password) async {
+    throw UnimplementedError();
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'code': code,
-    };
+  static Future<void> deleteRedis(int id) async {
+    throw UnimplementedError();
   }
 
-  static List<String> fieldList() {
-    return ['id', 'name', 'code'];
+  static Future<List<RedisInstancePo>> redisInstances() async {
+    return [RedisInstancePo(0, "example", RedisConst.defaultIp, RedisConst.defaultPort, RedisConst.defaultPassword)];
+  }
+
+  static Future<RedisInstancePo?> redisInstance(String name) async {
+    throw UnimplementedError();
   }
 }

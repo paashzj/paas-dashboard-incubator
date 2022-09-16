@@ -18,7 +18,7 @@
 //
 
 import 'package:paas_dashboard_portal_flutter/api/mysql/mysql_databases_api.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/mysql_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';
 
 class MysqlInstanceViewModel extends BaseLoadListPageViewModel<String> {

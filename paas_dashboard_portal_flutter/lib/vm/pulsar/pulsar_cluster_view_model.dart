@@ -20,7 +20,7 @@
 import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_cluster_api.dart';
 import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_cluster.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/pulsar_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';
 
 class PulsarClusterViewModel extends BaseLoadListPageViewModel<ClusterResp> {

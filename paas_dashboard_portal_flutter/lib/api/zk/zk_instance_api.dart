@@ -17,31 +17,23 @@
 // under the License.
 //
 
-import 'package:flutter/material.dart';
-import 'package:paas_dashboard_portal_flutter/module/mongo/mongo_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/zk/const.dart';
+import 'package:paas_dashboard_portal_flutter/module/zk/zk_instance_po.dart';
 
-class MongoInstanceViewModel extends ChangeNotifier {
-  final MongoInstancePo mongoInstancePo;
-
-  MongoInstanceViewModel(this.mongoInstancePo);
-
-  MongoInstanceViewModel deepCopy() {
-    return MongoInstanceViewModel(mongoInstancePo.deepCopy());
+class ZkInstanceApi {
+  static Future<void> saveZooKeeper(String name, String host, int port) async {
+    throw UnimplementedError();
   }
 
-  int get id {
-    return mongoInstancePo.id;
+  static Future<void> deleteZooKeeper(int id) async {
+    throw UnimplementedError();
   }
 
-  String get name {
-    return mongoInstancePo.name;
+  static Future<List<ZkInstancePo>> zooKeeperInstances() async {
+    return [ZkInstancePo(0, "example", ZkConst.defaultHost, ZkConst.defaultPort)];
   }
 
-  String get addr {
-    return mongoInstancePo.addr;
-  }
-
-  String get username {
-    return mongoInstancePo.username;
+  static Future<ZkInstancePo?> zooKeeperInstance(String name) async {
+    throw UnimplementedError();
   }
 }

@@ -21,7 +21,7 @@ import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_namespace_api.da
 import 'package:paas_dashboard_portal_flutter/const/ui_const.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_namespace.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_tenant.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/pulsar_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_view_model.dart';
 
 class PulsarNamespaceBacklogQuotaViewModel extends BaseLoadViewModel {

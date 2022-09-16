@@ -22,7 +22,7 @@ import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_consume.dart'
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_namespace.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_tenant.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_topic.dart';
-import 'package:paas_dashboard_portal_flutter/persistent/po/pulsar_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_view_model.dart';
 
 class PulsarTopicConsumerViewModel extends BaseLoadListViewModel<ConsumerResp> {
