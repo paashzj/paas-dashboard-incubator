@@ -17,8 +17,12 @@
 // under the License.
 //
 
+import 'package:paas_dashboard_portal_flutter/api/url_const.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/const.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class PulsarInstanceApi {
   static Future<void> savePulsar(
@@ -33,7 +37,12 @@ class PulsarInstanceApi {
       String clientCertFile,
       String clientKeyFile,
       String clientKeyPassword) async {
-    throw UnimplementedError();
+    var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarInstance}');
+    var pulsarInstancePo = PulsarInstancePo(1, name, host, port, functionHost, functionPort, enableTls,
+        functionEnableTls, caFile, clientCertFile, clientKeyFile, clientKeyPassword);
+    var body = json.encode(pulsarInstancePo.toMap());
+    var res = await http.post(url, headers: {"Content-Type": "application/json"}, body: body);
+    print("pulsar save ret : ${res.body}");
   }
 
   static Future<void> updatePulsar(
