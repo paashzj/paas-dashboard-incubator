@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
           Navigator.of(context).pushNamed('/$name');
         },
         style: ElevatedButton.styleFrom(
-            primary: Colors.white,
+            backgroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
             textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
         child: ListView(
