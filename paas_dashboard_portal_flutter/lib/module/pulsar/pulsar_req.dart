@@ -17,28 +17,18 @@
 // under the License.
 //
 
-class TlsContext {
-  static const int ENABLE_TLS = 1;
-  static const int DIS_ENABLE_TLS = 0;
-  final bool enableTls;
-  final String caFile;
-  final String clientCertFile;
-  final String clientKeyFile;
-  final String clientKeyPassword;
+class PulsarReq {
+  final int id;
+  final String serviceUrl;
+  final Map<String, dynamic> tlsContextDto;
 
-  TlsContext(this.enableTls, this.caFile, this.clientCertFile, this.clientKeyFile, this.clientKeyPassword);
-
-  TlsContext deepCopy() {
-    return TlsContext(enableTls, caFile, clientCertFile, clientKeyFile, clientKeyPassword);
-  }
+  PulsarReq(this.id, this.serviceUrl, this.tlsContextDto);
 
   Map<String, dynamic> toMap() {
     return {
-      'enableTls': enableTls,
-      'caFile': caFile,
-      'clientCertFile': clientCertFile,
-      'clientKeyFile': clientKeyFile,
-      'clientKeyPassword': clientKeyPassword,
+      'id': id,
+      'serviceUrl': serviceUrl,
+      'tlsContextDto': tlsContextDto,
     };
   }
 }

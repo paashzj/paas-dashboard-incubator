@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.paas.dashboard.vo;
+package com.paas.dashboard.dto;
 
 import com.paas.dashboard.util.config.BaseDeployConfig;
 import lombok.Data;
@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ReqSaveInstancesVo extends BaseDeployConfig {
+public class ReqSaveInstancesDto extends BaseDeployConfig {
 
     private String name;
     private String host;
@@ -39,20 +39,20 @@ public class ReqSaveInstancesVo extends BaseDeployConfig {
     private String clientKeyFile;
     private String clientKeyPassword;
 
-    public ReqSaveInstancesVo(String name,
-                              String k8sName,
-                              String namespace,
-                              String deployName,
-                              String host,
-                              int port,
-                              String functionHost,
-                              int functionPort,
-                              boolean enableTls,
-                              boolean functionEnableTls,
-                              String caFile,
-                              String clientCertFile,
-                              String clientKeyFile,
-                              String clientKeyPassword
+    public ReqSaveInstancesDto(String name,
+                               String k8sName,
+                               String namespace,
+                               String deployName,
+                               String host,
+                               int port,
+                               String functionHost,
+                               int functionPort,
+                               boolean enableTls,
+                               boolean functionEnableTls,
+                               String caFile,
+                               String clientCertFile,
+                               String clientKeyFile,
+                               String clientKeyPassword
     ) {
         super(name, k8sName, namespace, deployName);
         this.host = host;

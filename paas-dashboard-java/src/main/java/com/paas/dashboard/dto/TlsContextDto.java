@@ -17,4 +17,15 @@
  * under the License.
  */
 
-package com.paas.dashboard.vo;
+package com.paas.dashboard.dto;
+
+import lombok.Data;
+
+@Data
+public class TlsContextDto {
+    private boolean enableTls;
+    private String caFile;
+    private String clientCertFile;
+    private String clientKeyFile;
+    private String clientKeyPassword;
+}

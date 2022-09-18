@@ -19,13 +19,20 @@
 
 package com.paas.dashboard.controller;
 
+import com.paas.dashboard.dto.PulsarReqDto;
+import com.paas.dashboard.service.PulsarAdminService;
 import com.paas.dashboard.storage.StoragePulsar;
-import com.paas.dashboard.vo.ReqSaveInstancesVo;
+import com.paas.dashboard.dto.ReqSaveInstancesDto;
+import org.apache.pulsar.common.policies.data.TenantInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.ws.rs.PathParam;
+import java.util.List;
 
 
 @RestController
@@ -34,8 +41,11 @@ public class PulsarController {
 
     private final StoragePulsar storagePulsar = StoragePulsar.getInstance();
 
+    @Autowired
+    private PulsarAdminService pulsarAdminService;
+
     @PostMapping("/instances")
-    public HttpStatus saveInstance(@RequestBody ReqSaveInstancesVo reqSaveInstancesVo) {
+    public HttpStatus saveInstance(@RequestBody ReqSaveInstancesDto reqSaveInstancesVo) {
         boolean bool = storagePulsar.saveConfig(reqSaveInstancesVo);
         if (bool) {
             return HttpStatus.OK;
@@ -43,4 +53,29 @@ public class PulsarController {
             return HttpStatus.BAD_REQUEST;
         }
     }
+
+    @PostMapping("/tenants/fetchTenants")
+    public List<String> fetchTenants(@RequestBody PulsarReqDto pulsarReqDto) throws Exception {
+        return pulsarAdminService.fetchTenants(pulsarReqDto);
+    }
+
+    @PostMapping("/tenants/getTenantInfo")
+    public TenantInfo getTenantInfo(@RequestBody PulsarReqDto pulsarReqDto,
+                                    @PathParam("tenantName") String tenantName) throws Exception {
+        return pulsarAdminService.getTenantInfo(pulsarReqDto, tenantName);
+
+    }
+
+    @PostMapping("/tenants/create")
+    public void createTenant(@RequestBody PulsarReqDto pulsarReqDto,
+                             @PathParam("tenantName") String tenantName) throws Exception {
+        pulsarAdminService.createTenant(pulsarReqDto, tenantName);
+    }
+
+    @PostMapping("/tenants/delete")
+    public void deleteTenant(@RequestBody PulsarReqDto pulsarReqDto,
+                                   @PathParam("tenantName") String tenantName) throws Exception {
+        pulsarAdminService.deleteTenant(pulsarReqDto, tenantName);
+    }
+
 }

@@ -23,49 +23,59 @@ import 'dart:developer';
 import 'package:paas_dashboard_portal_flutter/api/http_util.dart';
 import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_tenant.dart';
+import 'package:http/http.dart' as http;
+import '../../module/pulsar/pulsar_req.dart';
+import '../url_const.dart';
 
 class PulsarTenantApi {
   static Future<void> createTenant(int id, String host, int port, TlsContext tlsContext, String tenant) async {
-    String tenantInfo = "";
-    await getTenantInfo(id, host, port, tenant, tlsContext).then((value) => tenantInfo = value);
-    var url =
-        tlsContext.enableTls ? HttpUtil.https : '${HttpUtil.http}$host:${port.toString()}/admin/v2/tenants/$tenant';
-    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).put<String>(url, data: tenantInfo);
-    if (HttpUtil.abnormal(response.statusCode!)) {
-      log('ErrorCode is ${response.statusCode}, body is ${response.data}');
-      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');
+    var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarCreate}');
+    String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(PulsarReq(id, '$protocol$host:$port', tlsContext.toMap())));
+    if (HttpUtil.abnormal(response.statusCode)) {
+      log('ErrorCode is ${response.statusCode}, body is ${response.body}');
+      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.body}');
     }
   }
 
   static Future<void> deleteTenant(int id, String host, int port, TlsContext tlsContext, String tenant) async {
-    var url =
-        tlsContext.enableTls ? HttpUtil.https : '${HttpUtil.http}$host:${port.toString()}/admin/v2/tenants/$tenant';
-    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).delete<String>(url);
-    if (HttpUtil.abnormal(response.statusCode!)) {
-      log('ErrorCode is ${response.statusCode}, body is ${response.data}');
-      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');
+    var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarDelete}');
+    String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(PulsarReq(id, '$protocol$host:$port', tlsContext.toMap())));
+    if (HttpUtil.abnormal(response.statusCode)) {
+      log('ErrorCode is ${response.statusCode}, body is ${response.body}');
+      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.body}');
     }
   }
 
   static Future<List<TenantResp>> getTenants(int id, String host, int port, TlsContext tlsContext) async {
-    var url = tlsContext.enableTls ? HttpUtil.https : '${HttpUtil.http}$host:${port.toString()}/admin/v2/tenants';
-    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
-    if (HttpUtil.abnormal(response.statusCode!)) {
-      log('ErrorCode is ${response.statusCode}, body is ${response.data}');
-      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');
+    var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarFetchTenants}');
+    String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(PulsarReq(id, '$protocol$host:$port', tlsContext.toMap())));
+    if (HttpUtil.abnormal(response.statusCode)) {
+      log('ErrorCode is ${response.statusCode}, body is ${response.body}');
+      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.body}');
     }
-    List jsonResponse = json.decode(response.data!) as List;
+    List jsonResponse = json.decode(response.body) as List;
     return jsonResponse.map((name) => TenantResp.fromJson(name)).toList();
   }
 
   static Future<String> getTenantInfo(int id, String host, int port, String tenant, TlsContext tlsContext) async {
-    var url =
-        tlsContext.enableTls ? HttpUtil.https : '${HttpUtil.http}$host:${port.toString()}/admin/v2/tenants/public';
-    var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
-    if (HttpUtil.abnormal(response.statusCode!)) {
-      log('ErrorCode is ${response.statusCode}, body is ${response.data}');
-      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.data}');
+    var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarGetTenantInfo}?tenantName=$tenant');
+    String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(PulsarReq(id, '$protocol$host:$port', tlsContext.toMap())));
+    if (HttpUtil.abnormal(response.statusCode)) {
+      log('ErrorCode is ${response.statusCode}, body is ${response.body}');
+      throw Exception('ErrorCode is ${response.statusCode}, body is ${response.body}');
     }
-    return response.data!;
+    return response.body;
   }
 }

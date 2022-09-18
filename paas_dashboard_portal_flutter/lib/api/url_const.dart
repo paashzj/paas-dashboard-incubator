@@ -22,4 +22,8 @@ class UrlConst {
   static const String ApiPrefix = "/api";
   static const String PulsarApiPrefix = "$ApiPrefix/pulsar";
   static const String PulsarInstance = "$PulsarApiPrefix/instances";
+  static const String PulsarFetchTenants = "$PulsarApiPrefix/tenants/fetchTenants";
+  static const String PulsarGetTenantInfo = "$PulsarApiPrefix/tenants/getTenantInfo";
+  static const String PulsarDelete = "$PulsarApiPrefix/tenants/delete";
+  static const String PulsarCreate = "$PulsarApiPrefix/tenants/create";
 }
