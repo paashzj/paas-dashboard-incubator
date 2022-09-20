@@ -19,7 +19,7 @@
 
 package com.paas.dashboard.service;
 
-import com.paas.dashboard.dto.PulsarReqDto;
+import com.paas.dashboard.dto.pulsar.PulsarReqDto;
 import com.paas.dashboard.dto.TlsContextDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.admin.PulsarAdmin;

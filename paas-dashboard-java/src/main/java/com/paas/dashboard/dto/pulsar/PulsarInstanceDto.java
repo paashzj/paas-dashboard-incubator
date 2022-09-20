@@ -17,17 +17,18 @@
  * under the License.
  */
 
-package com.paas.dashboard.dto;
+package com.paas.dashboard.dto.pulsar;
 
-import com.paas.dashboard.util.config.BaseDeployConfig;
-import lombok.Data;
+import com.paas.dashboard.util.config.BaseConfig;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
-public class ReqSaveInstancesDto extends BaseDeployConfig {
+public class PulsarInstanceDto extends BaseConfig {
 
-    private String name;
     private String host;
     private int port;
     private String functionHost;
@@ -39,22 +40,19 @@ public class ReqSaveInstancesDto extends BaseDeployConfig {
     private String clientKeyFile;
     private String clientKeyPassword;
 
-    public ReqSaveInstancesDto(String name,
-                               String k8sName,
-                               String namespace,
-                               String deployName,
-                               String host,
-                               int port,
-                               String functionHost,
-                               int functionPort,
-                               boolean enableTls,
-                               boolean functionEnableTls,
-                               String caFile,
-                               String clientCertFile,
-                               String clientKeyFile,
-                               String clientKeyPassword
+    public PulsarInstanceDto(String name,
+                             String host,
+                             int port,
+                             String functionHost,
+                             int functionPort,
+                             boolean enableTls,
+                             boolean functionEnableTls,
+                             String caFile,
+                             String clientCertFile,
+                             String clientKeyFile,
+                             String clientKeyPassword
     ) {
-        super(name, k8sName, namespace, deployName);
+        super(name);
         this.host = host;
         this.port = port;
         this.functionHost = functionHost;

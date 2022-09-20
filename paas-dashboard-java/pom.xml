@@ -39,13 +39,12 @@
         <!-- dependency -->
         <guava.version>31.1-jre</guava.version>
         <lombok.version>1.18.24</lombok.version>
+        <pulsar.version>2.10.1</pulsar.version>
         <zookeeper.version>3.8.0</zookeeper.version>
         <!-- plugin -->
         <checkstyle-plugin.version>3.2.0</checkstyle-plugin.version>
         <puppycrawl.version>10.3.3</puppycrawl.version>
         <spotbugs-maven-plugin.version>4.7.2.0</spotbugs-maven-plugin.version>
-        <!-- pulsar -->
-        <pulsar.version>2.10.1</pulsar.version>
     </properties>
     <dependencies>
         <dependency>
@@ -70,6 +69,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pulsar</groupId>
+            <artifactId>pulsar-client-admin-original</artifactId>
+            <version>${pulsar.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -103,11 +107,6 @@
                     <groupId>ch.qos.logback</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.pulsar</groupId>
-            <artifactId>pulsar-client-admin-original</artifactId>
-            <version>${pulsar.version}</version>
         </dependency>
     </dependencies>
 

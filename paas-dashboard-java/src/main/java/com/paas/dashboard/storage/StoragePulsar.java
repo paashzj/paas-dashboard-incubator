@@ -21,11 +21,11 @@ package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.dto.ReqSaveInstancesDto;
+import com.paas.dashboard.dto.pulsar.PulsarInstanceDto;
 
 import java.util.Map;
 
-public class StoragePulsar extends AbstractStorage<ReqSaveInstancesDto> {
+public class StoragePulsar extends AbstractStorage<PulsarInstanceDto> {
 
     private static final StoragePulsar INSTANCE = new StoragePulsar();
 
@@ -39,12 +39,12 @@ public class StoragePulsar extends AbstractStorage<ReqSaveInstancesDto> {
     }
 
     @Override
-    public ReqSaveInstancesDto deserializeConfig(String json) {
-        return JacksonService.toObject(json, ReqSaveInstancesDto.class);
+    public PulsarInstanceDto deserializeConfig(String json) {
+        return JacksonService.toObject(json, PulsarInstanceDto.class);
     }
 
     @Override
-    protected Map<String, ReqSaveInstancesDto> deserialize(String json) {
+    protected Map<String, PulsarInstanceDto> deserialize(String json) {
         return JacksonService.toRefer(json, new TypeReference<>() {
         });
     }

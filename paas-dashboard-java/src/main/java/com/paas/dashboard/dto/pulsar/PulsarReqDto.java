@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package com.paas.dashboard.dto;
+package com.paas.dashboard.dto.pulsar;
 
+import com.paas.dashboard.dto.TlsContextDto;
 import lombok.Data;
 
 @Data
