@@ -39,35 +39,35 @@ public abstract class AbstractStorage<T extends BaseConfig> {
 
     public boolean saveConfig(T config) {
         Map<String, T> map = getConfigMap();
-        if (map.containsKey(config.getName())) {
+        if (map.containsKey(config.getId())) {
             return false;
         }
-        map.put(config.getName(), config);
+        map.put(config.getId(), config);
         String json = JacksonService.toJson(map);
         try {
             FileUtils.writeStringToFile(new File(getConfigPath()), json, StandardCharsets.UTF_8);
             return true;
         } catch (IOException e) {
-            log.error("save config name {} exception is ", config.getName(), e);
+            log.error("save config name {} exception is ", config.getId(), e);
             return false;
         }
     }
 
-    public boolean deleteConfig(String name) {
+    public boolean deleteConfig(String id) {
         Map<String, T> map = getConfigMap();
-        map.remove(name);
+        map.remove(id);
         String json = JacksonService.toJson(map);
         try {
             FileUtils.writeStringToFile(new File(getConfigPath()), json, StandardCharsets.UTF_8);
             return true;
         } catch (IOException e) {
-            log.error("delete config name {} exception is ", name, e);
+            log.error("delete config name {} exception is ", id, e);
             return false;
         }
     }
 
-    public T getConfig(String name) {
-        return getConfigMap().get(name);
+    public T getConfig(String id) {
+        return getConfigMap().get(id);
     }
 
     public List<String> listContent() {

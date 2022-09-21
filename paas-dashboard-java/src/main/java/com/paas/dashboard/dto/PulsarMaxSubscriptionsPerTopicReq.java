@@ -17,15 +17,11 @@
  * under the License.
  */
 
-package com.paas.dashboard.util.config;
+package com.paas.dashboard.dto;
 
-public class NginxConfig extends BaseDeployConfig {
+import lombok.Data;
 
-    public NginxConfig() {
-    }
-
-    public NginxConfig(String name, String k8sName, String namespace, String deployName) {
-        super(name, k8sName, namespace, deployName);
-    }
-
+@Data
+public class PulsarMaxSubscriptionsPerTopicReq {
+    private int maxSubscriptionsPerTopic;
 }

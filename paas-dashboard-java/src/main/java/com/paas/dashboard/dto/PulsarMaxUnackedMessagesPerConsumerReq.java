@@ -17,37 +17,11 @@
  * under the License.
  */
 
-package com.paas.dashboard.util.config;
+package com.paas.dashboard.dto;
 
-public abstract class BaseConfig {
+import lombok.Data;
 
-    protected String name;
-    protected String id;
-
-    public BaseConfig() {
-    }
-
-    public BaseConfig(String name) {
-        this.name = name;
-    }
-    public BaseConfig(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+@Data
+public class PulsarMaxUnackedMessagesPerConsumerReq {
+    private int maxUnackedMessagesPerConsumer;
 }

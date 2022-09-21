@@ -7,7 +7,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -29,6 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PulsarInstanceDto extends BaseConfig {
 
+    private String id;
     private String host;
     private int port;
     private String functionHost;
@@ -40,7 +41,8 @@ public class PulsarInstanceDto extends BaseConfig {
     private String clientKeyFile;
     private String clientKeyPassword;
 
-    public PulsarInstanceDto(String name,
+    public PulsarInstanceDto(String id,
+                             String name,
                              String host,
                              int port,
                              String functionHost,
@@ -52,7 +54,8 @@ public class PulsarInstanceDto extends BaseConfig {
                              String clientKeyFile,
                              String clientKeyPassword
     ) {
-        super(name);
+        super(id, name);
+        this.id = id;
         this.host = host;
         this.port = port;
         this.functionHost = functionHost;

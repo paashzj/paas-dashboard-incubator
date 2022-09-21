@@ -17,14 +17,11 @@
  * under the License.
  */
 
-package com.paas.dashboard.dto.pulsar;
+package com.paas.dashboard.dto;
 
-import com.paas.dashboard.dto.TlsContextDto;
 import lombok.Data;
 
 @Data
-public class PulsarReqDto {
-    private int id;
-    private String serviceUrl;
-    private TlsContextDto tlsContextDto;
+public class PulsarMaxProducersPerTopicReq {
+    private int maxProducersPerTopic;
 }

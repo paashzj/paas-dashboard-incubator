@@ -19,88 +19,113 @@
 
 package com.paas.dashboard.service;
 
-import com.paas.dashboard.dto.pulsar.PulsarReqDto;
-import com.paas.dashboard.dto.TlsContextDto;
+import com.paas.dashboard.dto.PulsarUpdateBacklogQuotaReq;
+import com.paas.dashboard.dto.PulsarAutoTopicCreationReq;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.admin.PulsarAdmin;
-import org.apache.pulsar.client.admin.PulsarAdminBuilder;
 import org.apache.pulsar.client.api.PulsarClientException;
-import org.apache.pulsar.client.api.Authentication;
-import org.apache.pulsar.client.api.AuthenticationFactory;
-import org.apache.pulsar.client.impl.auth.AuthenticationTls;
+import org.apache.pulsar.common.policies.data.BacklogQuota;
+import org.apache.pulsar.common.policies.data.Policies;
 import org.apache.pulsar.common.policies.data.TenantInfo;
-import org.apache.pulsar.common.policies.data.TenantInfoImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
 public class PulsarAdminService {
 
-    private final Map<Integer, PulsarAdmin> pulsarAdminMap = new HashMap<>();
+    private final Map<String, PulsarAdmin> pulsarAdminMap = new HashMap<>();
 
-    public List<String> fetchTenants(PulsarReqDto pulsarReqDto) throws Exception {
-        PulsarAdmin pulsarAdmin = getPulsarAdmin(pulsarReqDto.getServiceUrl(),
-                pulsarReqDto.getId(), pulsarReqDto.getTlsContextDto());
-        return pulsarAdmin.tenants().getTenants();
+    public List<String> fetchTenants(String id) throws Exception {
+        return null;
     }
 
-    public TenantInfo getTenantInfo(PulsarReqDto pulsarReqDto, String tenantName) throws Exception {
-        PulsarAdmin pulsarAdmin = getPulsarAdmin(pulsarReqDto.getServiceUrl(),
-                pulsarReqDto.getId(), pulsarReqDto.getTlsContextDto());
-        TenantInfo tenantInfo = pulsarAdmin.tenants().getTenantInfo(tenantName);
-        return tenantInfo;
+    public TenantInfo getTenantInfo(String id, String tenantName) throws Exception {
+        return null;
     }
 
-    public void createTenant(PulsarReqDto pulsarReqDto, String tenantName) throws Exception {
-        try {
-            PulsarAdmin pulsarAdmin = getPulsarAdmin(pulsarReqDto.getServiceUrl(),
-                    pulsarReqDto.getId(), pulsarReqDto.getTlsContextDto());
-            pulsarAdmin.tenants().createTenant(tenantName, new TenantInfoImpl());
-        } catch (Exception e) {
-            log.error("creat pulsar tenant fail. ", e);
-            throw e;
-        }
+    public void createTenant(String id, String tenantName) throws Exception {
+
     }
 
-    public void deleteTenant(PulsarReqDto pulsarReqDto, String tenantName) throws Exception  {
-        try {
-            PulsarAdmin pulsarAdmin = getPulsarAdmin(pulsarReqDto.getServiceUrl(),
-                    pulsarReqDto.getId(), pulsarReqDto.getTlsContextDto());
-            pulsarAdmin.tenants().deleteTenant(tenantName);
-        } catch (Exception e) {
-            log.error("delete pulsar tenant fail. ", e);
-            throw e;
-        }
+    public void deleteTenant(String id, String tenant) throws Exception {
+
     }
 
-    private PulsarAdmin creatPulsarAdmin(String serviceUrl, TlsContextDto tlsContextVo) throws PulsarClientException {
-        PulsarAdminBuilder pulsarAdminBuilder = PulsarAdmin.builder().serviceHttpUrl(serviceUrl);
-        if (tlsContextVo.isEnableTls()) {
-            Map<String, String> authParams = new HashMap<>();
-            authParams.put("tlsCertFile", tlsContextVo.getClientCertFile());
-            authParams.put("tlsKeyFile", tlsContextVo.getClientKeyFile());
-            Authentication tlsAuth = AuthenticationFactory
-                    .create(AuthenticationTls.class.getName(), authParams);
-
-            pulsarAdminBuilder.enableTlsHostnameVerification(false)
-                    .allowTlsInsecureConnection(true)
-                    .tlsTrustCertsFilePath(tlsContextVo.getCaFile())
-                    .authentication(tlsAuth);
-        }
-        return pulsarAdminBuilder.connectionTimeout(15, TimeUnit.SECONDS).build();
+    private PulsarAdmin creatPulsarAdmin(String id) throws PulsarClientException {
+        return null;
     }
 
-    private PulsarAdmin getPulsarAdmin(String serviceUrl, int id, TlsContextDto tlsContextVo)
-            throws PulsarClientException {
+    private PulsarAdmin getPulsarAdmin(String id) throws PulsarClientException {
         if (!pulsarAdminMap.containsKey(id)) {
-            PulsarAdmin pulsarAdmin = creatPulsarAdmin(serviceUrl, tlsContextVo);
+            PulsarAdmin pulsarAdmin = creatPulsarAdmin(id);
             pulsarAdminMap.put(id, pulsarAdmin);
         }
         return pulsarAdminMap.get(id);
     }
+
+    public void createNamespace(String id, String tenantName, String namespace) throws Exception {
+    }
+
+    public void deleteNamespace(String id, String tenantName, String namespace) throws Exception {
+    }
+
+    public List<String> getNamespaces(String id, String tenantName) throws Exception {
+        return null;
+    }
+
+    public Map<BacklogQuota.BacklogQuotaType, BacklogQuota> getBacklogQuota(String id,
+                                                                            String tenantName, String namespace)
+            throws Exception {
+        return null;
+    }
+
+    public Policies getPolicy(String id, String tenantName, String namespace) throws Exception {
+        return null;
+    }
+
+    public void setMessageTTLSecond(String id, String tenantName,
+                                    String namespace, int messageTTLSecond) throws Exception {
+    }
+
+    public void setMaxProducersPerTopic(String id, String tenantName,
+                                        String namespace, int maxProducersPerTopic) throws Exception {
+    }
+
+    public void setMaxConsumersPerTopic(String id, String tenantName,
+                                        String namespace, int maxConsumersPerTopic) throws Exception {
+    }
+
+    public void setMaxConsumerPerSubscription(String id, String tenantName,
+                                              String namespace, int maxConsumersPerSubscription) throws Exception {
+    }
+
+    public void setMaxUnackedMessagesPerConsumer(String id, String tenantName, String namespace,
+                                                 int maxUnackedMessagesPerConsumer) throws Exception {
+    }
+
+    public void setMaxUnackedMessagesPerSubscription(String id, String tenantName, String namespace,
+                                                     int maxUnackedMessagesPerSubscription) throws Exception {
+    }
+
+    public void setMaxSubscriptionsPerTopic(String id, String tenantName,
+                                            String namespace, int maxSubscriptionsPerTopic) throws Exception {
+    }
+
+    public void setMaxTopicsPerNamespace(String id, String tenantName,
+                                         String namespace, int maxTopicsPerNamespace) throws Exception {
+    }
+
+    public void updateBacklogQuota(PulsarUpdateBacklogQuotaReq pulsarUpdateBacklogQuotaReq,
+                                   String tenantName, String namespace, String id) throws Exception {
+    }
+
+    public void setAutoTopicCreation(String id, String tenantName,
+                                     String namespace, PulsarAutoTopicCreationReq pulsarReq) throws Exception {
+    }
+
 }
