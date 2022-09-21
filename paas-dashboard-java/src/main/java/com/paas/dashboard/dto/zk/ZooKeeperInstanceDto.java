@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.paas.dashboard.dto.pulsar;
+package com.paas.dashboard.dto.zk;
 
 import com.paas.dashboard.util.config.BaseConfig;
 import lombok.Getter;
@@ -27,16 +27,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class PulsarInstanceDto extends BaseConfig {
-    private String host;
-    private int port;
-    private String functionHost;
-    private int functionPort;
-    private boolean enableTls;
-    private boolean functionEnableTls;
-    private String caFile;
-    private String clientCertFile;
-    private String clientKeyFile;
-    private String clientKeyPassword;
+public class ZooKeeperInstanceDto extends BaseConfig {
+
+    private String zookeeperAddr;
 
 }
