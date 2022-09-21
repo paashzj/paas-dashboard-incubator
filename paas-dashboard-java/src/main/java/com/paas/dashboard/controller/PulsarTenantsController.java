@@ -22,7 +22,7 @@ package com.paas.dashboard.controller;
 import com.paas.dashboard.service.PulsarAdminService;
 import com.paas.dashboard.storage.StoragePulsar;
 import com.paas.dashboard.dto.pulsar.PulsarInstanceDto;
-import com.paas.dashboard.dto.PulsarTenantCreateReq;
+import com.paas.dashboard.dto.pulsar.PulsarTenantCreateReq;
 
 import org.apache.pulsar.common.policies.data.TenantInfo;
 import org.springframework.beans.factory.annotation.Autowired;

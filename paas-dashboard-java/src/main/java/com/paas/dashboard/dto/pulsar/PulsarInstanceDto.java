@@ -28,8 +28,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class PulsarInstanceDto extends BaseConfig {
-
-    private String id;
     private String host;
     private int port;
     private String functionHost;

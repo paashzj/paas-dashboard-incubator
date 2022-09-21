@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package com.paas.dashboard.dto;
+package com.paas.dashboard.dto.pulsar;
 
 import lombok.Data;
 
 @Data
-public class PulsarMaxConsumersPerSubscriptionReq {
-    private int maxConsumersPerSubscription;
+public class PulsarMaxUnackedMessagesPerSubscriptionReq {
+    private int maxUnackedMessagesPerSubscription;
 }

@@ -19,8 +19,8 @@
 
 package com.paas.dashboard.service;
 
-import com.paas.dashboard.dto.PulsarUpdateBacklogQuotaReq;
-import com.paas.dashboard.dto.PulsarAutoTopicCreationReq;
+import com.paas.dashboard.dto.pulsar.PulsarUpdateBacklogQuotaReq;
+import com.paas.dashboard.dto.pulsar.PulsarAutoTopicCreationReq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.admin.PulsarAdmin;

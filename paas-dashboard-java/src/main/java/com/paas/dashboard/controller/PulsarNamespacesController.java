@@ -19,16 +19,16 @@
 
 package com.paas.dashboard.controller;
 
-import com.paas.dashboard.dto.PulsarUpdateBacklogQuotaReq;
-import com.paas.dashboard.dto.PulsarMessageTTLSecondReq;
-import com.paas.dashboard.dto.PulsarMaxProducersPerTopicReq;
-import com.paas.dashboard.dto.PulsarMaxConsumersPerSubscriptionReq;
-import com.paas.dashboard.dto.PulsarMaxConsumersPerTopicReq;
-import com.paas.dashboard.dto.PulsarMaxUnackedMessagesPerConsumerReq;
-import com.paas.dashboard.dto.PulsarMaxUnackedMessagesPerSubscriptionReq;
-import com.paas.dashboard.dto.PulsarMaxSubscriptionsPerTopicReq;
-import com.paas.dashboard.dto.PulsarMaxTopicsPerNamespaceReq;
-import com.paas.dashboard.dto.PulsarAutoTopicCreationReq;
+import com.paas.dashboard.dto.pulsar.PulsarUpdateBacklogQuotaReq;
+import com.paas.dashboard.dto.pulsar.PulsarMessageTTLSecondReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxProducersPerTopicReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxConsumersPerSubscriptionReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxConsumersPerTopicReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxUnackedMessagesPerConsumerReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxUnackedMessagesPerSubscriptionReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxSubscriptionsPerTopicReq;
+import com.paas.dashboard.dto.pulsar.PulsarMaxTopicsPerNamespaceReq;
+import com.paas.dashboard.dto.pulsar.PulsarAutoTopicCreationReq;
 import com.paas.dashboard.service.PulsarAdminService;
 import org.apache.pulsar.common.policies.data.BacklogQuota;
 import org.apache.pulsar.common.policies.data.Policies;

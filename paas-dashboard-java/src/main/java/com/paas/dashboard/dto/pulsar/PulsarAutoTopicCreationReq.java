@@ -17,11 +17,13 @@
  * under the License.
  */
 
-package com.paas.dashboard.dto;
+package com.paas.dashboard.dto.pulsar;
 
 import lombok.Data;
 
 @Data
-public class PulsarMaxSubscriptionsPerTopicReq {
-    private int maxSubscriptionsPerTopic;
+public class PulsarAutoTopicCreationReq {
+    private boolean allowAutoTopicCreation;
+    private String topicType;
+    private int defaultNumPartitions;
 }

@@ -19,10 +19,16 @@
 
 package com.paas.dashboard.util.config;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public abstract class BaseConfig {
 
-    protected String name;
     protected String id;
+
+    protected String name;
 
     public BaseConfig() {
     }
@@ -33,21 +39,5 @@ public abstract class BaseConfig {
     public BaseConfig(String id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
