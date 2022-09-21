@@ -17,35 +17,37 @@
  * under the License.
  */
 
-package com.paas.dashboard.storage;
+package com.paas.dashboard.module.pulsar;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.config.LvsConfig;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Map;
+@Setter
+@Getter
+@NoArgsConstructor
+public class PulsarInstanceCreateReq {
 
-public class StorageLvs extends AbstractStorage<LvsConfig> {
+    private String name;
 
-    private static final StorageLvs INSTANCE = new StorageLvs();
+    private String host;
 
-    public static StorageLvs getInstance() {
-        return INSTANCE;
-    }
+    private int port;
 
-    @Override
-    protected String getConfigPath() {
-        return StorageUtil.LVS_INSTANCE_PATH;
-    }
+    private String functionHost;
 
-    @Override
-    public LvsConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, LvsConfig.class);
-    }
+    private int functionPort;
 
-    @Override
-    protected Map<String, LvsConfig> deserialize(String json) {
-        return JacksonService.toRefer(json, new TypeReference<>() {
-        });
-    }
+    private boolean enableTls;
+
+    private boolean functionEnableTls;
+
+    private String caFile;
+
+    private String clientCertFile;
+
+    private String clientKeyFile;
+
+    private String clientKeyPassword;
+
 }

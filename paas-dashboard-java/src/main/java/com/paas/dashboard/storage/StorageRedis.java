@@ -21,7 +21,7 @@ package com.paas.dashboard.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.util.config.RedisConfig;
+import com.paas.dashboard.config.RedisConfig;
 
 import java.util.Map;
 

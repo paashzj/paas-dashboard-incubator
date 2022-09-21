@@ -17,35 +17,19 @@
  * under the License.
  */
 
-package com.paas.dashboard.storage;
+package com.paas.dashboard.module.zookeeper;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.config.LvsConfig;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Map;
+@Setter
+@Getter
+@NoArgsConstructor
+public class ZooKeeperInstanceCreateReq {
 
-public class StorageLvs extends AbstractStorage<LvsConfig> {
+    private String name;
 
-    private static final StorageLvs INSTANCE = new StorageLvs();
+    private String zookeeperAddr;
 
-    public static StorageLvs getInstance() {
-        return INSTANCE;
-    }
-
-    @Override
-    protected String getConfigPath() {
-        return StorageUtil.LVS_INSTANCE_PATH;
-    }
-
-    @Override
-    public LvsConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, LvsConfig.class);
-    }
-
-    @Override
-    protected Map<String, LvsConfig> deserialize(String json) {
-        return JacksonService.toRefer(json, new TypeReference<>() {
-        });
-    }
 }

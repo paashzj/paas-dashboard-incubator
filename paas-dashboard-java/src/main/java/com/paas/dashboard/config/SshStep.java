@@ -17,35 +17,50 @@
  * under the License.
  */
 
-package com.paas.dashboard.storage;
+package com.paas.dashboard.config;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.config.ZooKeeperConfig;
+public class SshStep {
 
-import java.util.Map;
+    private String username;
 
-public class StorageZooKeeper extends AbstractStorage<ZooKeeperConfig> {
+    private String password;
 
-    private static final StorageZooKeeper INSTANCE = new StorageZooKeeper();
+    private String suUsername;
 
-    public static StorageZooKeeper getInstance() {
-        return INSTANCE;
+    private String suPassword;
+
+    public SshStep() {
     }
 
-    @Override
-    protected String getConfigPath() {
-        return StorageUtil.ZK_INSTANCE_PATH;
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public ZooKeeperConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, ZooKeeperConfig.class);
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    @Override
-    protected Map<String, ZooKeeperConfig> deserialize(String json) {
-        return JacksonService.toRefer(json, new TypeReference<>() {
-        });
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSuUsername() {
+        return suUsername;
+    }
+
+    public void setSuUsername(String suUsername) {
+        this.suUsername = suUsername;
+    }
+
+    public String getSuPassword() {
+        return suPassword;
+    }
+
+    public void setSuPassword(String suPassword) {
+        this.suPassword = suPassword;
     }
 }

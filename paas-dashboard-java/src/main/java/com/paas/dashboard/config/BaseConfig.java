@@ -17,35 +17,27 @@
  * under the License.
  */
 
-package com.paas.dashboard.storage;
+package com.paas.dashboard.config;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.config.KubernetesConfig;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Map;
+@Setter
+@Getter
+public abstract class BaseConfig {
 
-public class StorageK8s extends AbstractStorage<KubernetesConfig> {
+    protected String id;
 
-    private static final StorageK8s INSTANCE = new StorageK8s();
+    protected String name;
 
-    public static StorageK8s getInstance() {
-        return INSTANCE;
+    public BaseConfig() {
     }
 
-    @Override
-    protected String getConfigPath() {
-        return StorageUtil.K8S_INSTANCE_PATH;
+    public BaseConfig(String name) {
+        this.name = name;
     }
-
-    @Override
-    public KubernetesConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, KubernetesConfig.class);
-    }
-
-    @Override
-    protected Map<String, KubernetesConfig> deserialize(String json) {
-        return JacksonService.toRefer(json, new TypeReference<>() {
-        });
+    public BaseConfig(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }

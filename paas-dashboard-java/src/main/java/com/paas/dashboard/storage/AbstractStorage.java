@@ -20,7 +20,7 @@
 package com.paas.dashboard.storage;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.paas.dashboard.util.config.BaseConfig;
+import com.paas.dashboard.config.BaseConfig;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

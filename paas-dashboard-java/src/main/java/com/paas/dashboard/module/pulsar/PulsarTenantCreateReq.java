@@ -17,35 +17,13 @@
  * under the License.
  */
 
-package com.paas.dashboard.storage;
+package com.paas.dashboard.module.pulsar;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.paas.dashboard.util.JacksonService;
-import com.paas.dashboard.config.LvsConfig;
+import lombok.Data;
 
-import java.util.Map;
+@Data
+public class PulsarTenantCreateReq {
 
-public class StorageLvs extends AbstractStorage<LvsConfig> {
+    private String tenantName;
 
-    private static final StorageLvs INSTANCE = new StorageLvs();
-
-    public static StorageLvs getInstance() {
-        return INSTANCE;
-    }
-
-    @Override
-    protected String getConfigPath() {
-        return StorageUtil.LVS_INSTANCE_PATH;
-    }
-
-    @Override
-    public LvsConfig deserializeConfig(String json) {
-        return JacksonService.toObject(json, LvsConfig.class);
-    }
-
-    @Override
-    protected Map<String, LvsConfig> deserialize(String json) {
-        return JacksonService.toRefer(json, new TypeReference<>() {
-        });
-    }
 }
