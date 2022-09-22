@@ -17,28 +17,19 @@
  * under the License.
  */
 
-package com.paas.dashboard.config;
+package com.paas.dashboard.module.bookkeeper;
 
-import com.paas.dashboard.module.bookkeeper.BookkeeperInstanceCreateReq;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Setter
 @Getter
 @NoArgsConstructor
-public class BookkeeperConfig extends BaseConfig {
+public class BookkeeperInstanceCreateReq {
+
+    private String name;
 
     private String zookeeperAddr;
-
-    public static BookkeeperConfig genFromReq(BookkeeperInstanceCreateReq req) {
-        BookkeeperConfig config = new BookkeeperConfig();
-        config.setId(UUID.randomUUID().toString());
-        config.setName(req.getName());
-        config.setZookeeperAddr(req.getZookeeperAddr());
-        return config;
-    }
 
 }

@@ -17,28 +17,27 @@
  * under the License.
  */
 
-package com.paas.dashboard.config;
+package com.paas.dashboard.module.zookeeper;
 
-import com.paas.dashboard.module.bookkeeper.BookkeeperInstanceCreateReq;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
+import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
-public class BookkeeperConfig extends BaseConfig {
+@AllArgsConstructor
+public class ZooKeeperInstanceMetric {
 
-    private String zookeeperAddr;
+    private long znodeCount;
 
-    public static BookkeeperConfig genFromReq(BookkeeperInstanceCreateReq req) {
-        BookkeeperConfig config = new BookkeeperConfig();
-        config.setId(UUID.randomUUID().toString());
-        config.setName(req.getName());
-        config.setZookeeperAddr(req.getZookeeperAddr());
-        return config;
-    }
+    private long maxDataSize;
+
+    private long avgDataSize;
+
+    private List<ZnodeMetric> znodeMetric;
 
 }

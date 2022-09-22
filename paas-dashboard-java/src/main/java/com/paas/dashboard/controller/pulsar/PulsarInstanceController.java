@@ -41,12 +41,12 @@ public class PulsarInstanceController {
 
     @PutMapping("/instances")
     public ResponseEntity<PulsarInstanceCreateResp> save(@RequestBody PulsarInstanceCreateReq req) {
-        PulsarConfig pulsarConfig = PulsarConfig.genFromReq(req);
-        boolean result = storage.saveConfig(pulsarConfig);
+        PulsarConfig config = PulsarConfig.genFromReq(req);
+        boolean result = storage.saveConfig(config);
         if (!result) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(new PulsarInstanceCreateResp(pulsarConfig.getId()), HttpStatus.CREATED);
+        return new ResponseEntity<>(new PulsarInstanceCreateResp(config.getId()), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/instances/{id}")

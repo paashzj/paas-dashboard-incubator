@@ -17,12 +17,12 @@
  * under the License.
  */
 
-package com.paas.dashboard.controller.zookeeper;
+package com.paas.dashboard.controller.bookkeeper;
 
-import com.paas.dashboard.config.ZooKeeperConfig;
-import com.paas.dashboard.module.zookeeper.ZooKeeperInstanceCreateReq;
-import com.paas.dashboard.module.zookeeper.ZooKeeperInstanceCreateResp;
-import com.paas.dashboard.storage.StorageZooKeeper;
+import com.paas.dashboard.config.BookkeeperConfig;
+import com.paas.dashboard.module.bookkeeper.BookkeeperInstanceCreateReq;
+import com.paas.dashboard.module.bookkeeper.BookkeeperInstanceCreateResp;
+import com.paas.dashboard.storage.StorageBookkeeper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,19 +36,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/zookeeper")
-public class ZookeeperInstanceController {
+@RequestMapping("/api/bookkeeper")
+public class BookkeeperInstanceController {
 
-    private final StorageZooKeeper storage = StorageZooKeeper.getInstance();
+    private final StorageBookkeeper storage = StorageBookkeeper.getInstance();
 
     @PutMapping("/instances")
-    public ResponseEntity<ZooKeeperInstanceCreateResp> save(@RequestBody ZooKeeperInstanceCreateReq req) {
-        ZooKeeperConfig config = ZooKeeperConfig.genFromReq(req);
+    public ResponseEntity<BookkeeperInstanceCreateResp> save(@RequestBody BookkeeperInstanceCreateReq req) {
+        BookkeeperConfig config = BookkeeperConfig.genFromReq(req);
         boolean result = storage.saveConfig(config);
         if (!result) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(new ZooKeeperInstanceCreateResp(config.getId()), HttpStatus.CREATED);
+        return new ResponseEntity<>(new BookkeeperInstanceCreateResp(config.getId()), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/instances/{id}")
@@ -62,7 +62,7 @@ public class ZookeeperInstanceController {
     }
 
     @GetMapping("/instances")
-    public ResponseEntity<List<ZooKeeperConfig>> listInstances() {
+    public ResponseEntity<List<BookkeeperConfig>> listInstances() {
         return new ResponseEntity<>(storage.getConfigMap().values().stream().toList(), HttpStatus.OK);
     }
 
