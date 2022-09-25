@@ -19,112 +19,200 @@
 
 package com.paas.dashboard.service;
 
-import com.paas.dashboard.module.pulsar.PulsarAutoTopicCreationReq;
+import com.github.benmanes.caffeine.cache.AsyncCacheLoader;
+import com.paas.dashboard.config.PulsarConfig;
 import com.paas.dashboard.module.pulsar.PulsarUpdateBacklogQuotaReq;
+import com.paas.dashboard.module.pulsar.PulsarAutoTopicCreationReq;
+import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.RemovalListener;
+import com.paas.dashboard.storage.StoragePulsar;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.admin.PulsarAdmin;
+import org.apache.pulsar.client.admin.PulsarAdminBuilder;
+import org.apache.pulsar.client.api.Authentication;
+import org.apache.pulsar.client.api.AuthenticationFactory;
 import org.apache.pulsar.client.api.PulsarClientException;
+import org.apache.pulsar.client.impl.auth.AuthenticationTls;
 import org.apache.pulsar.common.policies.data.BacklogQuota;
 import org.apache.pulsar.common.policies.data.Policies;
 import org.apache.pulsar.common.policies.data.TenantInfo;
+import org.apache.pulsar.common.policies.data.impl.AutoTopicCreationOverrideImpl;
+import org.apache.pulsar.common.policies.data.impl.BacklogQuotaImpl;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
+import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
 public class PulsarAdminService {
 
-    private final Map<String, PulsarAdmin> pulsarAdminMap = new ConcurrentHashMap<>();
+    private AsyncLoadingCache<String, PulsarAdmin> pulsarAdminCache;
 
     public List<String> fetchTenants(String id) throws Exception {
-        return null;
+        return getPulsarAdmin(id).tenants().getTenants();
     }
 
-    public TenantInfo getTenantInfo(String id, String tenantName) throws Exception {
-        return null;
+    public TenantInfo getTenantInfo(String id, String tenant) throws Exception {
+        return getPulsarAdmin(id).tenants().getTenantInfo(tenant);
     }
 
-    public void createTenant(String id, String tenantName) throws Exception {
-
+    public void createTenant(String id, String tenant) throws Exception {
+        getPulsarAdmin(id).tenants().createTenant(tenant, TenantInfo.builder().build());
     }
 
     public void deleteTenant(String id, String tenant) throws Exception {
-
+        getPulsarAdmin(id).tenants().deleteTenant(tenant);
     }
 
-    private PulsarAdmin creatPulsarAdmin(String id) throws PulsarClientException {
-        return null;
+    public void createNamespace(String id, String tenant, String namespace) throws Exception {
+        getPulsarAdmin(id).namespaces().createNamespace(String.format("%s/%s", tenant, namespace));
     }
 
-    private PulsarAdmin getPulsarAdmin(String id) throws PulsarClientException {
-        if (!pulsarAdminMap.containsKey(id)) {
-            PulsarAdmin pulsarAdmin = creatPulsarAdmin(id);
-            pulsarAdminMap.put(id, pulsarAdmin);
-        }
-        return pulsarAdminMap.get(id);
+    public void deleteNamespace(String id, String tenant, String namespace) throws Exception {
+        getPulsarAdmin(id).namespaces().deleteNamespace(String.format("%s/%s", tenant, namespace));
     }
 
-    public void createNamespace(String id, String tenantName, String namespace) throws Exception {
+    public List<String> getNamespaces(String id, String tenant) throws Exception {
+        return getPulsarAdmin(id).namespaces().getNamespaces(tenant);
     }
 
-    public void deleteNamespace(String id, String tenantName, String namespace) throws Exception {
+    public Map<BacklogQuota.BacklogQuotaType, BacklogQuota> getBacklogQuota(String id, String tenant,
+                                                                            String namespace) throws Exception {
+        return getPulsarAdmin(id).namespaces().getBacklogQuotaMap(String.format("%s/%s", tenant, namespace));
     }
 
-    public List<String> getNamespaces(String id, String tenantName) throws Exception {
-        return null;
+    public Policies getPolicy(String id, String tenant, String namespace) throws Exception {
+        return getPulsarAdmin(id).namespaces().getPolicies(String.format("%s/%s", tenant, namespace));
     }
 
-    public Map<BacklogQuota.BacklogQuotaType, BacklogQuota> getBacklogQuota(String id,
-                                                                            String tenantName, String namespace)
-            throws Exception {
-        return null;
+    public void setMessageTTLSecond(String id, String tenant, String namespace, int messageTTLSecond) throws Exception {
+        getPulsarAdmin(id).namespaces()
+                .setNamespaceMessageTTL(String.format("%s/%s", tenant, namespace), messageTTLSecond);
     }
 
-    public Policies getPolicy(String id, String tenantName, String namespace) throws Exception {
-        return null;
-    }
-
-    public void setMessageTTLSecond(String id, String tenantName,
-                                    String namespace, int messageTTLSecond) throws Exception {
-    }
-
-    public void setMaxProducersPerTopic(String id, String tenantName,
+    public void setMaxProducersPerTopic(String id, String tenant,
                                         String namespace, int maxProducersPerTopic) throws Exception {
+        getPulsarAdmin(id).namespaces()
+                .setMaxProducersPerTopic(String.format("%s/%s", tenant, namespace), maxProducersPerTopic);
     }
 
-    public void setMaxConsumersPerTopic(String id, String tenantName,
+    public void setMaxConsumersPerTopic(String id, String tenant,
                                         String namespace, int maxConsumersPerTopic) throws Exception {
+        getPulsarAdmin(id).namespaces()
+                .setMaxConsumersPerTopic(String.format("%s/%s", tenant, namespace), maxConsumersPerTopic);
     }
 
-    public void setMaxConsumerPerSubscription(String id, String tenantName,
+    public void setMaxConsumerPerSubscription(String id, String tenant,
                                               String namespace, int maxConsumersPerSubscription) throws Exception {
+        getPulsarAdmin(id).namespaces()
+                .setMaxConsumersPerSubscription(String.format("%s/%s", tenant, namespace), maxConsumersPerSubscription);
     }
 
-    public void setMaxUnackedMessagesPerConsumer(String id, String tenantName, String namespace,
+    public void setMaxUnackedMessagesPerConsumer(String id, String tenant, String namespace,
                                                  int maxUnackedMessagesPerConsumer) throws Exception {
+        String namespaces = String.format("%s/%s", tenant, namespace);
+        getPulsarAdmin(id).namespaces()
+                .setMaxUnackedMessagesPerConsumer(namespaces, maxUnackedMessagesPerConsumer);
     }
 
-    public void setMaxUnackedMessagesPerSubscription(String id, String tenantName, String namespace,
+    public void setMaxUnackedMessagesPerSubscription(String id, String tenant, String namespace,
                                                      int maxUnackedMessagesPerSubscription) throws Exception {
+        String namespaces = String.format("%s/%s", tenant, namespace);
+        getPulsarAdmin(id).namespaces()
+                .setMaxUnackedMessagesPerSubscription(namespaces, maxUnackedMessagesPerSubscription);
     }
 
-    public void setMaxSubscriptionsPerTopic(String id, String tenantName,
+    public void setMaxSubscriptionsPerTopic(String id, String tenant,
                                             String namespace, int maxSubscriptionsPerTopic) throws Exception {
+        getPulsarAdmin(id).namespaces()
+                .setMaxSubscriptionsPerTopic(String.format("%s/%s", tenant, namespace), maxSubscriptionsPerTopic);
     }
 
-    public void setMaxTopicsPerNamespace(String id, String tenantName,
+    public void setMaxTopicsPerNamespace(String id, String tenant,
                                          String namespace, int maxTopicsPerNamespace) throws Exception {
+        getPulsarAdmin(id).namespaces()
+                .setMaxTopicsPerNamespace(String.format("%s/%s", tenant, namespace), maxTopicsPerNamespace);
     }
 
     public void updateBacklogQuota(PulsarUpdateBacklogQuotaReq pulsarUpdateBacklogQuotaReq,
-                                   String tenantName, String namespace, String id) throws Exception {
+                                   String tenant, String namespace, String id) throws Exception {
+        BacklogQuota backlogQuota = BacklogQuotaImpl.builder()
+                .retentionPolicy(BacklogQuota.RetentionPolicy.valueOf(pulsarUpdateBacklogQuotaReq.getPolicy()))
+                .limitSize(pulsarUpdateBacklogQuotaReq.getLimit())
+                .limitTime(pulsarUpdateBacklogQuotaReq.getLimitTime()).build();
+
+        getPulsarAdmin(id).namespaces().setBacklogQuota(String.format("%s/%s", tenant, namespace), backlogQuota);
     }
 
-    public void setAutoTopicCreation(String id, String tenantName,
+    public void setAutoTopicCreation(String id, String tenant,
                                      String namespace, PulsarAutoTopicCreationReq pulsarReq) throws Exception {
+        AutoTopicCreationOverrideImpl autoTopicCreationOverride = AutoTopicCreationOverrideImpl.builder()
+                .defaultNumPartitions(pulsarReq.getDefaultNumPartitions())
+                .topicType(pulsarReq.getTopicType())
+                .build();
+        getPulsarAdmin(id).namespaces()
+                .setAutoTopicCreation(String.format("%s/%s", tenant, namespace), autoTopicCreationOverride);
     }
 
+    private CompletableFuture<PulsarAdmin> creatPulsarAdmin(String id) throws PulsarClientException {
+        StoragePulsar storage = StoragePulsar.getInstance();
+        PulsarConfig config = storage.getConfig(id);
+        String serviceHttpUrl = String.format(config.isEnableTls() ? "https://%s:%d" : "http://%s:%d",
+                config.getHost(), config.getPort());
+        CompletableFuture<PulsarAdmin> future = new CompletableFuture<>();
+        PulsarAdminBuilder pulsarAdminBuilder = PulsarAdmin.builder().serviceHttpUrl(serviceHttpUrl);
+        if (config.isEnableTls()) {
+            Map<String, String> authParams = new HashMap<>();
+            authParams.put("tlsCertFile", config.getClientCertFile());
+            authParams.put("tlsKeyFile", config.getClientKeyFile());
+            Authentication tlsAuth = AuthenticationFactory
+                    .create(AuthenticationTls.class.getName(), authParams);
+
+            pulsarAdminBuilder.enableTlsHostnameVerification(false)
+                    .allowTlsInsecureConnection(true)
+                    .tlsTrustCertsFilePath(config.getCaFile())
+                    .authentication(tlsAuth);
+        }
+        future.complete(pulsarAdminBuilder.connectionTimeout(15, TimeUnit.SECONDS).build());
+        return future;
+    }
+
+    private PulsarAdmin getPulsarAdmin(String id) throws ExecutionException, InterruptedException {
+        return pulsarAdminCache.get(id).get();
+    }
+
+    @PostConstruct
+    public void init() {
+        pulsarAdminCache = Caffeine.newBuilder()
+                .expireAfterAccess(60 * 60 * 24, TimeUnit.SECONDS)
+                .maximumSize(100)
+                .removalListener((RemovalListener<String, PulsarAdmin>) (id, pulsarAdmin, cause) -> {
+                    log.info("id {} cache removed, because of {}", id, cause);
+                    try {
+                        pulsarAdmin.close();
+                    } catch (Exception e) {
+                        log.error("close failed, ", e);
+                    }
+                }).buildAsync(new AsyncCacheLoader<>() {
+                    @Override
+                    public CompletableFuture<? extends PulsarAdmin> asyncLoad(String id, Executor executor)
+                            throws Exception {
+                        return creatPulsarAdmin(id);
+                    }
+
+                    @Override
+                    public CompletableFuture<? extends PulsarAdmin> asyncReload(String id, PulsarAdmin oldPulsarAdmin,
+                                                                                Executor executor) throws Exception {
+                        return creatPulsarAdmin(id);
+                    }
+                });
+    }
 }

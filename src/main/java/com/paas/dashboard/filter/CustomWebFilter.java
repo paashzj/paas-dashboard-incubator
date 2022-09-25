@@ -17,26 +17,25 @@
  * under the License.
  */
 
-package com.paas.dashboard;
+package com.paas.dashboard.filter;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+import reactor.core.publisher.Mono;
 
-@SpringBootApplication
-public class Main {
+import javax.validation.constraints.NotNull;
 
-    @Bean
-    RouterFunction<ServerResponse> staticResourceRouter(){
-        return RouterFunctions.resources("/**", new FileSystemResource(System.getenv("STATIC_PATH")));
+@Component
+public class CustomWebFilter implements WebFilter {
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, @NotNull WebFilterChain chain) {
+        if (exchange.getRequest().getURI().getPath().equals("/")) {
+            return chain.filter(exchange.mutate()
+                    .request(exchange.getRequest().mutate().path("/index.html").build()).build());
+        }
+
+        return chain.filter(exchange);
     }
-
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
-    }
-
 }
