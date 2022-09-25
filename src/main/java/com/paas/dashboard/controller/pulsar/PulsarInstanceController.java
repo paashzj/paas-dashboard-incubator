@@ -22,7 +22,9 @@ package com.paas.dashboard.controller.pulsar;
 import com.paas.dashboard.config.PulsarConfig;
 import com.paas.dashboard.module.pulsar.PulsarInstanceCreateReq;
 import com.paas.dashboard.module.pulsar.PulsarInstanceCreateResp;
+import com.paas.dashboard.service.PulsarAdminService;
 import com.paas.dashboard.storage.StoragePulsar;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,6 +64,20 @@ public class PulsarInstanceController {
     @GetMapping("/instances")
     public ResponseEntity<List<PulsarConfig>> listInstances() {
         return new ResponseEntity<>(storage.getConfigMap().values().stream().toList(), HttpStatus.OK);
+    }
+
+    @Autowired
+    private PulsarAdminService pulsarAdminService;
+    @PutMapping("/instances/{id}/save-all-topics")
+    public ResponseEntity<Void> saveAllTopics(@PathVariable("id") String id) throws Exception {
+        pulsarAdminService.saveAllTopics(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/instances/{id}/recover-topics")
+    public ResponseEntity<Void> recoverTopics(@PathVariable("id") String id) throws Exception {
+        pulsarAdminService.recoverTopics(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

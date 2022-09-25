@@ -47,6 +47,8 @@ public class StorageUtil {
     public static final String REDIS_INSTANCE_PATH = STORAGE_PREFIX + "redis-instance-v1.json";
     public static final String ZK_INSTANCE_PATH = STORAGE_PREFIX + "zookeeper-instance-v1.json";
 
+    public static final String PULSAR_TOPICS_PATH = STORAGE_PREFIX + "pulsar-topics-v1.json";
+
     public static final String LVS_INSTANCE_PATH = STORAGE_PREFIX + "lvs-instance-v1.json";
 
     static {

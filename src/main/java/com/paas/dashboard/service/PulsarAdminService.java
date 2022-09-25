@@ -21,12 +21,14 @@ package com.paas.dashboard.service;
 
 import com.github.benmanes.caffeine.cache.AsyncCacheLoader;
 import com.paas.dashboard.config.PulsarConfig;
+import com.paas.dashboard.module.pulsar.PulsarStorageInfo;
 import com.paas.dashboard.module.pulsar.PulsarUpdateBacklogQuotaReq;
 import com.paas.dashboard.module.pulsar.PulsarAutoTopicCreationReq;
 import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.RemovalListener;
 import com.paas.dashboard.storage.StoragePulsar;
+import com.paas.dashboard.storage.StorageTopics;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.admin.PulsarAdmin;
@@ -35,6 +37,7 @@ import org.apache.pulsar.client.api.Authentication;
 import org.apache.pulsar.client.api.AuthenticationFactory;
 import org.apache.pulsar.client.api.PulsarClientException;
 import org.apache.pulsar.client.impl.auth.AuthenticationTls;
+import org.apache.pulsar.common.partition.PartitionedTopicMetadata;
 import org.apache.pulsar.common.policies.data.BacklogQuota;
 import org.apache.pulsar.common.policies.data.Policies;
 import org.apache.pulsar.common.policies.data.TenantInfo;
@@ -183,6 +186,47 @@ public class PulsarAdminService {
         }
         future.complete(pulsarAdminBuilder.connectionTimeout(15, TimeUnit.SECONDS).build());
         return future;
+    }
+
+
+    public void saveAllTopics(String id) throws Exception {
+        PulsarAdmin pulsarAdmin = getPulsarAdmin(id);
+        List<String> tenants = pulsarAdmin.tenants().getTenants();
+        PulsarStorageInfo storageInfo = new PulsarStorageInfo();
+        Map<String, TenantInfo> tenantInfoMap =  new HashMap<>();
+        Map<String, Policies> namespaceInfoMap =  new HashMap<>();
+        Map<String, PartitionedTopicMetadata> topicsMap =  new HashMap<>();
+        for (String tenant : tenants) {
+            tenantInfoMap.put(tenant, pulsarAdmin.tenants().getTenantInfo(tenant));
+            List<String> namespaces = pulsarAdmin.namespaces().getNamespaces(tenant);
+            for (String namespace : namespaces) {
+                namespaceInfoMap.put(namespace, pulsarAdmin.namespaces().getPolicies(namespace));
+                List<String> topics = pulsarAdmin.topics().getList(namespace);
+                for (String topic : topics) {
+                    topicsMap.put(topic, pulsarAdmin.topics().getPartitionedTopicMetadataAsync(topic).get());
+                }
+            }
+        }
+        storageInfo.setTenants(tenantInfoMap);
+        storageInfo.setNamespaces(namespaceInfoMap);
+        storageInfo.setTopics(topicsMap);
+        StorageTopics.getInstance().saveConfig(storageInfo);
+    }
+
+    public void recoverTopics(String id) throws Exception {
+        PulsarAdmin pulsarAdmin = getPulsarAdmin(id);
+        PulsarStorageInfo storageInfo = StorageTopics.getInstance().getConfig(id);
+        for (Map.Entry<String, TenantInfo> tenantEntry : storageInfo.getTenants().entrySet()) {
+            pulsarAdmin.tenants().createTenant(tenantEntry.getKey(), tenantEntry.getValue());
+        }
+        for (Map.Entry<String, Policies> namespaceEntry : storageInfo.getNamespaces().entrySet()) {
+            pulsarAdmin.namespaces().createNamespace(namespaceEntry.getKey(), namespaceEntry.getValue());
+        }
+        for (Map.Entry<String, PartitionedTopicMetadata> topicEntry : storageInfo.getTopics().entrySet()) {
+            pulsarAdmin.topics().createPartitionedTopic(topicEntry.getKey(),
+                    topicEntry.getValue().partitions, topicEntry.getValue().properties);
+        }
+        StorageTopics.getInstance().deleteConfig(id);
     }
 
     private PulsarAdmin getPulsarAdmin(String id) throws ExecutionException, InterruptedException {
